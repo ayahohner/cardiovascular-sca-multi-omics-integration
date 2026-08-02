@@ -14,7 +14,7 @@ The current phase will:
 
 This phase does **not** estimate fate in patient SCA tissue or claim that SCA causes transition shifts. Matched-SCA-tissue testing, longitudinal or lineage proof, generalized platform work, controlled-access data, ligand–receptor networks, and clinical prediction are deferred.
 
-See the [current-phase project specification](docs/disease-conditioned-cellular-fate-model.md) for the evidence rules, failure controls, outputs, and success criteria. Deferred areas are not part of implementation.
+See the [current-phase project specification](docs/disease-conditioned-cellular-fate-model.md) for the scientific rationale and the [EARS requirements](docs/current-phase-ears-requirements.md) for testable system behavior. Deferred areas are not part of implementation.
 
 ## Project history
 
