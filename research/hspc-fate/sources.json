@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "module": "hspc-fate",
+  "verified_on": "2026-08-02",
+  "policy": {
+    "required_access": "open without institutional approval",
+    "biological_unit": "donor",
+    "local_raw_root": "data/raw/hspc-fate",
+    "local_derived_root": "data/derived/hspc-fate",
+    "retrieval_rule": "Freeze resolved URL, byte count, SHA-256 checksum, retrieval time, and terms before analysis.",
+    "data_in_git": false
+  },
+  "sources": [
+    {
+      "id": "s-bsst1258-hspc-scrna",
+      "accession": "S-BSST1258",
+      "admission": "required_discovery",
+      "eligible_for_v1": true,
+      "access": "open",
+      "organism": "Homo sapiens",
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "comparison": "3 healthy donors and 3 SCD donors",
+      "biological_unit": "donor",
+      "landing_url": "https://www.ebi.ac.uk/biostudies/studies/S-BSST1258",
+      "metadata_url": "https://www.ebi.ac.uk/biostudies/api/v1/studies/S-BSST1258",
+      "asset_urls": [
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD175.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD177.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD192.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD2.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD3.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD4.zip"
+      ],
+      "format": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "license": "CC0",
+      "citation": "Severe inflammation and lineage skewing is associated with poor engraftment of engineered hematopoietic stem cells in patients with sickle cell disease. Nature Communications (2025). doi:10.1038/s41467-025-58321-4",
+      "verified": [
+        "The BioStudies API reports CC0.",
+        "All six donor archives resolve without authentication.",
+        "The archives contain unfiltered feature-barcode matrices, so cell calling is required."
+      ],
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact asset checksums remain to be frozen at retrieval."
+      ]
+    },
+    {
+      "id": "gse133181-bm-cd34-scrna",
+      "accession": "GSE133181",
+      "admission": "required_validation",
+      "eligible_for_v1": true,
+      "access": "open",
+      "organism": "Homo sapiens",
+      "assay": "10x single-cell RNA-seq of bone-marrow CD34-positive cells",
+      "comparison": "4 healthy donors and 5 SCD donors; 3 thalassemia donors and 1 lineage-depleted healthy sample excluded",
+      "biological_unit": "donor",
+      "landing_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE133181",
+      "asset_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133181/suppl/GSE133181_RAW.tar"
+      ],
+      "format": "GEO supplementary TAR of donor-level processed matrices",
+      "expected_bytes": 303196160,
+      "license": "NCBI GEO public repository terms; source attribution required",
+      "citation": "Hua et al. Single-cell RNA-seq analysis of human bone marrow reveals molecular features of hematopoietic stem cells in sickle cell disease. Blood (2020). doi:10.1182/blood.2019002301",
+      "verified": [
+        "GEO reports public status, donor groups, raw SRA availability, and a processed supplementary archive.",
+        "The processed archive resolves without authentication."
+      ],
+      "limitations": [
+        "The cohort is small and differs from the discovery collection context.",
+        "Thalassemia and lineage-depleted samples are outside the v1 comparison.",
+        "Cross-sectional RNA profiles do not observe cell fate."
+      ]
+    },
+    {
+      "id": "gse277682-human-hspc-bulk",
+      "accession": "GSE277682",
+      "admission": "optional_orthogonal_validation",
+      "eligible_for_v1": true,
+      "access": "open",
+      "organism": "Homo sapiens",
+      "assay": "bulk RNA-seq of sorted CD45-positive lineage-negative CD34-positive CD38-negative bone-marrow HSPCs",
+      "comparison": "reported 4 non-SCD controls and 7 SCD individuals",
+      "biological_unit": "donor",
+      "landing_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE277682",
+      "asset_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE277nnn/GSE277682/suppl/GSE277682_Human_bulkrnaseq_2024_counts_forGEO.txt.gz"
+      ],
+      "format": "gene-by-sample count matrix",
+      "expected_bytes": 566066,
+      "license": "NCBI GEO public repository terms; source attribution required",
+      "citation": "Premature senescence impairs hematopoietic stem cell function during sickle cell disease in mice and humans. GEO GSE277682",
+      "verified": [
+        "GEO reports public status on 2026-07-22.",
+        "The processed count matrix resolves without authentication."
+      ],
+      "limitations": [
+        "Bulk RNA-seq cannot estimate cell-state fate probabilities.",
+        "Use is restricted to orthogonal lineage, stemness, or senescence program direction.",
+        "Participant metadata require re-verification at retrieval because the release is recent."
+      ]
+    },
+    {
+      "id": "gse277681-townes-hspc-citeseq",
+      "accession": "GSE277681",
+      "admission": "optional_model_validation",
+      "eligible_for_v1": true,
+      "access": "open",
+      "organism": "Mus musculus",
+      "assay": "CITE-seq of c-Kit-enriched Townes-model bone-marrow HSPCs",
+      "comparison": "AA and SS mice at 2 and 6 months with 4 biological replicates per condition and age",
+      "biological_unit": "mouse",
+      "landing_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE277681",
+      "asset_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE277nnn/GSE277681/suppl/GSE277681_gex_counts.tar.gz",
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE277nnn/GSE277681/suppl/GSE277681_ADT_Counts_Townes_2mo6mo.txt.gz"
+      ],
+      "format": "GEX count archive and ADT count matrix",
+      "license": "NCBI GEO public repository terms; source attribution required",
+      "citation": "Premature senescence impairs hematopoietic stem cell function during sickle cell disease in mice and humans. GEO GSE277681",
+      "verified": [
+        "GEO reports public status on 2026-07-22.",
+        "Processed GEX and ADT assets resolve without authentication."
+      ],
+      "limitations": [
+        "This is a mouse disease model, not human evidence.",
+        "Age is confounded with processing batch, so age effects are not independently estimable.",
+        "Use is restricted to within-age disease-direction support."
+      ]
+    },
+    {
+      "id": "sickle-gene-therapy-clonal-tracking",
+      "accession": "EGAD00001010913 and author-derived repository",
+      "admission": "excluded",
+      "eligible_for_v1": false,
+      "access": "mixed controlled and publicly viewable",
+      "organism": "Homo sapiens",
+      "assay": "longitudinal somatic-mutation clonal tracking after gene therapy",
+      "comparison": "SCD participants before and after gene therapy; no healthy comparator",
+      "biological_unit": "participant",
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10719109/",
+      "asset_urls": [
+        "https://ega-archive.org/datasets/EGAD00001010913",
+        "https://github.com/mspencerchapman/Clonal_selection_after_gene_therapy"
+      ],
+      "format": "controlled raw sequencing and publicly viewable derived files",
+      "license": "No explicit license found for the author-derived repository; raw sequencing is controlled",
+      "citation": "Clonal selection of hematopoietic stem cells after gene therapy for sickle cell disease. Nature Medicine (2023). doi:10.1038/s41591-023-02636-6",
+      "verified": [
+        "The paper describes longitudinal clone tracking.",
+        "Raw sequencing access is controlled."
+      ],
+      "limitations": [
+        "Institutional controlled-data access violates the zero-budget open-data boundary.",
+        "No healthy comparison answers the v1 estimand.",
+        "The public derived repository has no explicit reuse license."
+      ],
+      "exclusion_reason": "Not an open, licensed, healthy-versus-SCA input for v1; retain only as a future methodological pointer."
+    }
+  ]
+}

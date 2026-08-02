@@ -18,6 +18,5 @@ htmlcov/
 data/*
 !data/README.md
 results/*
-!results/.gitkeep
 !results/mvp/
 !results/mvp/**
