@@ -1,6 +1,6 @@
 # A unified data plane for disease-conditioned cellular fate across the cardiopulmonary vascular axis
 
-**Project:** Cardiovascular SCA Data Plane · **Status:** Planning only · **Version:** 0.1 · **Prepared:** 2026-08-01
+**Project:** Cardiovascular SCA Multi-Omics Integration · **Status:** Planning only · **Version:** 0.1 · **Prepared:** 2026-08-01
 
 ## The pitch
 

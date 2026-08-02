@@ -1,4 +1,4 @@
-# Cardiovascular SCA Data Plane
+# Cardiovascular SCA Multi-Omics Integration
 
 A planning workspace for a unified, analysis-ready data plane supporting healthy-versus-sickle-cell-anemia cardiovascular cell-state and fate modeling.
 
