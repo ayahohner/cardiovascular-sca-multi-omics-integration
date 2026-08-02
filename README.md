@@ -16,3 +16,7 @@ results/    Generated figures, tables, and other outputs (not committed)
 ```
 
 No language, package manager, or analysis framework has been selected yet.
+
+## Sample project specifications
+
+- [Unified data plane for disease-conditioned cellular fate](docs/disease-conditioned-cellular-fate-model.md) — a planning pitch for analysis-ready healthy-versus-sickle-cell cardiovascular evidence and its first fate-model use case; no implementation is included.
