@@ -1,0 +1,217 @@
+{
+  "frozen_on": "2026-08-02",
+  "schema_version": "1.0.0",
+  "sources": [
+    {
+      "accession": "CELLxGENE dataset 572f3f3e-d3e4-4d13-8e2b-88215e508481",
+      "admission": {
+        "expected_bytes": 1009920229,
+        "expected_sha256": "e11f45bc36cbff3b6b368b96f5a49b801dbd7dcbdb494043183635c3688c2a90",
+        "observed_bytes": 1009920229,
+        "observed_sha256": "e11f45bc36cbff3b6b368b96f5a49b801dbd7dcbdb494043183635c3688c2a90",
+        "path": "data/raw/heart/heart_vascular.h5ad",
+        "reason": "verified",
+        "role": "healthy_heart_reference",
+        "status": "admitted"
+      },
+      "anatomy": "six adult human cardiac regions",
+      "assay": "10x 3' v2 and v3 single-cell and single-nucleus RNA-seq",
+      "citation": "Litviňuková et al. Cells of the adult human heart. Nature (2020). doi:10.1038/s41586-020-2797-4",
+      "covariates": [
+        "donor_id",
+        "sample",
+        "tissue",
+        "assay",
+        "cell_source",
+        "sex",
+        "development_stage"
+      ],
+      "donor_count": 14,
+      "expected_bytes": 1009920229,
+      "format": "H5AD, CELLxGENE schema 7.1.0",
+      "id": "heart-vascular-cxg-23ea6682",
+      "limitations": [
+        "One integrated atlas, so cell_source is technical context rather than an independent study",
+        "CELLxGENE marks the integrated object as non-primary because underlying source studies also exist in the corpus",
+        "No SCA tissue is present"
+      ],
+      "local_path": "data/raw/heart/heart_vascular.h5ad",
+      "open_processed": true,
+      "release": "dataset version 23ea6682-46f7-4703-8429-dd0d09e55cda",
+      "replication_unit": "donor_id",
+      "role": "healthy_heart_reference",
+      "sample_count": 147,
+      "sha256": "e11f45bc36cbff3b6b368b96f5a49b801dbd7dcbdb494043183635c3688c2a90",
+      "source_preprocessing": "Author-integrated vascular subset; raw counts in raw.X; author state labels retained in cell_states",
+      "terms": "CZ CELLxGENE Terms of Use; source attribution required",
+      "terms_url": "https://cellxgene.cziscience.com/tos",
+      "url": "https://datasets.cellxgene.cziscience.com/23ea6682-46f7-4703-8429-dd0d09e55cda.h5ad"
+    },
+    {
+      "accession": "CELLxGENE dataset 066943a2-fdac-4b29-b348-40cede398e4e",
+      "admission": {
+        "expected_bytes": 5873612847,
+        "expected_sha256": "1cbdde1e513a31bdb6a3f70296e2d0612760d2af4032e239c94596ea87b44007",
+        "observed_bytes": 5873612847,
+        "observed_sha256": "1cbdde1e513a31bdb6a3f70296e2d0612760d2af4032e239c94596ea87b44007",
+        "path": "data/raw/lung/hlca_core.h5ad",
+        "reason": "verified",
+        "role": "healthy_lung_reference",
+        "status": "admitted"
+      },
+      "anatomy": "healthy lung parenchyma, respiratory airway, and nose",
+      "assay": "10x 3' v1-v3 and 10x 5' v1-v2 single-cell RNA-seq",
+      "citation": "Sikkema et al. An integrated cell atlas of the lung in health and disease. Nature Medicine (2023). doi:10.1038/s41591-023-02327-2",
+      "covariates": [
+        "donor_id",
+        "sample",
+        "study",
+        "dataset",
+        "tissue",
+        "assay",
+        "ann_finest_level",
+        "sex",
+        "development_stage"
+      ],
+      "donor_count": 107,
+      "expected_bytes": 5873612847,
+      "format": "H5AD, CELLxGENE schema 7.1.0",
+      "id": "hlca-core-cxg-688185ad",
+      "limitations": [
+        "Integrated reference contains study and label-transfer effects",
+        "Gene counts are not batch corrected",
+        "No SCA tissue is present"
+      ],
+      "local_path": "data/raw/lung/hlca_core.h5ad",
+      "open_processed": true,
+      "release": "dataset version 688185ad-11c2-4172-a53a-f4f1f4076860",
+      "replication_unit": "donor_id",
+      "role": "healthy_lung_reference",
+      "sample_count": 166,
+      "sha256": "1cbdde1e513a31bdb6a3f70296e2d0612760d2af4032e239c94596ea87b44007",
+      "source_preprocessing": "HLCA core integrated with scANVI; raw counts in raw.X; consensus annotations retained",
+      "terms": "HCA Data Release Policy and CC BY 4.0",
+      "terms_url": "https://data.humancellatlas.org/hca-bio-networks/lung/atlases/lung-v1-0",
+      "url": "https://datasets.cellxgene.cziscience.com/688185ad-11c2-4172-a53a-f4f1f4076860.h5ad"
+    },
+    {
+      "accession": "GEO GSE274340",
+      "admission": {
+        "expected_bytes": 41553920,
+        "expected_sha256": "778cd20376a1861f2ffe47e236ac31ddfb2bf398cabbd54a31da440ac7b0bd7c",
+        "observed_bytes": 41553920,
+        "observed_sha256": "778cd20376a1861f2ffe47e236ac31ddfb2bf398cabbd54a31da440ac7b0bd7c",
+        "path": "data/raw/sca_endothelial/GSE274340_RAW.tar",
+        "reason": "verified",
+        "role": "sca_endothelial_perturbational_prior",
+        "status": "admitted"
+      },
+      "anatomy": "HUVEC microfluidic model",
+      "assay": "10x 5' v2 single-cell RNA-seq",
+      "citation": "Caruso et al. Less deformable erythrocyte subpopulations biomechanically induce endothelial inflammation in sickle cell disease. Blood (2024). GEO GSE274340",
+      "covariates": [
+        "condition",
+        "GEO sample accession"
+      ],
+      "donor_count": 0,
+      "expected_bytes": 41553920,
+      "format": "TAR of two 10x MTX matrices",
+      "id": "gse274340-huvec",
+      "limitations": [
+        "One sample per condition",
+        "Pharmacologically dehydrated healthy RBCs model one mechanical aspect of SCA",
+        "HUVECs are not adult cardiac or pulmonary endothelium"
+      ],
+      "local_path": "data/raw/sca_endothelial/GSE274340_RAW.tar",
+      "open_processed": true,
+      "release": "GEO supplementary archive public 2024-08-08; frozen asset modified 2024-08-09",
+      "replication_unit": "condition-level sample; no biological donor replication",
+      "role": "sca_endothelial_perturbational_prior",
+      "sample_count": 2,
+      "sha256": "778cd20376a1861f2ffe47e236ac31ddfb2bf398cabbd54a31da440ac7b0bd7c",
+      "source_preprocessing": "GEO-supplied feature-barcode matrices",
+      "terms": "NCBI GEO public repository terms and source attribution",
+      "terms_url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE274nnn/GSE274340/suppl/GSE274340_RAW.tar"
+    },
+    {
+      "accession": "GEO GSE53441",
+      "admission": {
+        "expected_bytes": 2999901,
+        "expected_sha256": "9ab85f3ac0f8278fc6acd31560b142512108ba2e1d8877d24faa67888d420522",
+        "observed_bytes": 2999901,
+        "observed_sha256": "9ab85f3ac0f8278fc6acd31560b142512108ba2e1d8877d24faa67888d420522",
+        "path": "data/raw/sca_immune/GSE53441_series_matrix.txt.gz",
+        "reason": "verified",
+        "role": "sca_immune_association",
+        "status": "admitted"
+      },
+      "anatomy": "peripheral blood mononuclear cells",
+      "assay": "Affymetrix Human Genome U133 Plus 2.0 microarray",
+      "citation": "van Beers et al. Associations of inflammation, iron and early death in sickle cell disease. Blood (2015). GEO GSE53441",
+      "covariates": [
+        "diagnosis",
+        "GEO sample accession"
+      ],
+      "donor_count": 33,
+      "expected_bytes": 2999901,
+      "format": "GEO series matrix, normalized Affymetrix GPL570 expression",
+      "id": "gse53441-pbmc",
+      "limitations": [
+        "GEO summary reports 24 SCA and 9 healthy subjects, while the matrix contains 24 SCA and 10 control samples",
+        "Participant mapping for the extra control sample is unavailable",
+        "Bulk PBMC signal is systemic immune association, not endothelial identity"
+      ],
+      "local_path": "data/raw/sca_immune/GSE53441_series_matrix.txt.gz",
+      "open_processed": true,
+      "release": "GEO series matrix public 2014-12-31; frozen asset modified 2026-06-17",
+      "replication_unit": "GEO biological-replicate sample",
+      "role": "sca_immune_association",
+      "sample_count": 34,
+      "sha256": "9ab85f3ac0f8278fc6acd31560b142512108ba2e1d8877d24faa67888d420522",
+      "source_preprocessing": "GEO series matrix with background correction, quantile normalization, and median-polish summarization reported by submitters",
+      "terms": "NCBI GEO public repository terms and source attribution",
+      "terms_url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE53nnn/GSE53441/matrix/GSE53441_series_matrix.txt.gz"
+    },
+    {
+      "accession": "GEO GPL570 annotation",
+      "admission": {
+        "expected_bytes": 8471521,
+        "expected_sha256": "d7cd44352127b1e34f3a720ebea86093ef255a38f1612a85a2962b71bde8f394",
+        "observed_bytes": 8471521,
+        "observed_sha256": "d7cd44352127b1e34f3a720ebea86093ef255a38f1612a85a2962b71bde8f394",
+        "path": "data/raw/sca_immune/GPL570.annot.gz",
+        "reason": "verified",
+        "role": "probe_gene_crosswalk",
+        "status": "admitted"
+      },
+      "anatomy": "not applicable",
+      "assay": "reference annotation",
+      "citation": "Affymetrix Human Genome U133 Plus 2.0 Array, GEO GPL570",
+      "covariates": [
+        "probe ID",
+        "gene symbol",
+        "Entrez gene ID"
+      ],
+      "donor_count": 0,
+      "expected_bytes": 8471521,
+      "format": "GEO tab-delimited platform annotation",
+      "id": "gpl570-annotation",
+      "limitations": [
+        "Some probes map to multiple or obsolete gene symbols"
+      ],
+      "local_path": "data/raw/sca_immune/GPL570.annot.gz",
+      "open_processed": true,
+      "release": "annotation dated 2016-08-09",
+      "replication_unit": "not applicable",
+      "role": "probe_gene_crosswalk",
+      "sample_count": 0,
+      "sha256": "d7cd44352127b1e34f3a720ebea86093ef255a38f1612a85a2962b71bde8f394",
+      "source_preprocessing": "NCBI GEO platform annotation",
+      "terms": "NCBI GEO public repository terms and source attribution",
+      "terms_url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/platforms/GPLnnn/GPL570/annot/GPL570.annot.gz"
+    }
+  ]
+}

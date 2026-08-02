@@ -1,0 +1,79 @@
+{
+  "artifacts": [
+    {
+      "bytes": 10049,
+      "path": "source_registry.json",
+      "sha256": "e640c30112b710c9b018dff70fc1d4c5dd271d988848f2d4ed158ef076864d1f"
+    },
+    {
+      "bytes": 840,
+      "path": "state_metadata.tsv",
+      "sha256": "6ba1007372810e3d125061882256d2ebeb610dc7d6ffcf3c94a37d029252dbcc"
+    },
+    {
+      "bytes": 15584,
+      "path": "state_programs.tsv",
+      "sha256": "098138a759f913a5524cf85a4c53c4c228cd99aa8c8afb1a8244dd633c9b34f0"
+    },
+    {
+      "bytes": 1483900,
+      "path": "healthy_reference_state_centroids.tsv.gz",
+      "sha256": "51884604fdd6df1d8a7f0150c78d32b5ab731d666e18a55e9d9ed76cd87a49ea"
+    },
+    {
+      "bytes": 2436,
+      "path": "candidate_adjacencies.tsv",
+      "sha256": "1d529d7dc4c1274a826bda19de5095a4c1322cb087eb1518321542f109a6ae9d"
+    },
+    {
+      "bytes": 183148,
+      "path": "sca_signal_ledger.tsv",
+      "sha256": "bc62edbe81112a797a691235329175baedec37ea8e64c33caa179edbba74701c"
+    },
+    {
+      "bytes": 5676,
+      "path": "sca_transition_mapping.tsv",
+      "sha256": "70de3e629bc0549766ab386c9805765cebca759095331b443bf2e19580f0da1f"
+    },
+    {
+      "bytes": 8389,
+      "path": "ranked_hypotheses.tsv",
+      "sha256": "e4920243d273aa35c041f3ea2930f732602917f4d517e7fcdf02c8c6b1d85b9e"
+    },
+    {
+      "bytes": 34953,
+      "path": "decision_log.tsv",
+      "sha256": "115a83a35d2441b310585c3885bd09288a87afd71fc7c730bdebb6989e91e8f8"
+    },
+    {
+      "bytes": 2262,
+      "path": "validation_report.json",
+      "sha256": "efdec1050e271972a0a0a8d649bde52c3ae17cd264ce683fd818d54619a6f0f3"
+    },
+    {
+      "bytes": 688,
+      "path": "compute_preflight.json",
+      "sha256": "dba6fecc24416f19f1eae961f5a69417da1121224a51e7071f3fa51d2fe1e380"
+    },
+    {
+      "bytes": 1607,
+      "path": "follow_up_plan.md",
+      "sha256": "67eb664fa8f1d6b3d7c97790c469fe827abbea8a5130e972c9165211ad71b5d6"
+    },
+    {
+      "bytes": 1619,
+      "path": "report.md",
+      "sha256": "0a9b66667b238ac1f2d09fca2f2b20a5ccddab7f61409bef778a50efbd1fd101"
+    },
+    {
+      "bytes": 5758,
+      "path": "provenance_manifest.json",
+      "sha256": "a2266800aab6897ec2fbf1ccb41eaf9e97cedcd08fe0b3debcf926b920c786d8"
+    }
+  ],
+  "claim_boundary": "hypothesis prioritization only; no patient fate, causal shift, or clinical prediction",
+  "pipeline_version": "0.1.0",
+  "release_id": "mvp-0.1.0",
+  "scope": "open-data healthy heart/lung endothelial transition synthesis with indirect SCA-signal mapping",
+  "validation_status": "passed"
+}

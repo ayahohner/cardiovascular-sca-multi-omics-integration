@@ -1,0 +1,191 @@
+{
+  "code": [
+    {
+      "path": "src/cardio_sca_mvp/__init__.py",
+      "sha256": "a4b4ec88dff94a7ccd5bd216ecf92705768d270d245f3636989604f70b3e7f0f"
+    },
+    {
+      "path": "src/cardio_sca_mvp/cli.py",
+      "sha256": "f33c90c69ae89d5f88fa3dec02f37fd52f81198a080d1a4303a06c227acfee4a"
+    },
+    {
+      "path": "src/cardio_sca_mvp/pipeline.py",
+      "sha256": "963b7dfddfd4c5e074e2615044416cc9a499dfd5e1e8755379dc8b0e8c2bb557"
+    },
+    {
+      "path": "src/cardio_sca_mvp/ranking.py",
+      "sha256": "73eb4f65fccbafce8b8aec08ed7d76474a7d3e31f086be1f13bd5f38902bfe9a"
+    },
+    {
+      "path": "src/cardio_sca_mvp/reference.py",
+      "sha256": "5db6568961ea21a46a9226080688abc292d5c11c588abb2c331c6c22141e19b8"
+    },
+    {
+      "path": "src/cardio_sca_mvp/signals.py",
+      "sha256": "4f8cb2ee1a021796b563a2d41918b2de07d7a483cc9657d9b5d85a75b7b5d3f0"
+    },
+    {
+      "path": "src/cardio_sca_mvp/sources.py",
+      "sha256": "a090935035f557952626df710552068f0ee0f947b17b40565e97a138ee1dc88a"
+    },
+    {
+      "path": "src/cardio_sca_mvp/transitions.py",
+      "sha256": "c58c17aa0ee18a60e454362a77ba4a2fd5e9d6821b5f4e500e79ca90088bcc25"
+    },
+    {
+      "path": "src/cardio_sca_mvp/util.py",
+      "sha256": "5c3ddd32664ebc8b78238db2a1ac9a23578c6baf2649f4d30802c01d6dac7a65"
+    },
+    {
+      "path": "src/cardio_sca_mvp/validation.py",
+      "sha256": "b83edf13d67f35eeb780e77643cf4d9a6cb10d62b01c15a184f4ad9a9cefd9e1"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "config/sources.json",
+      "sha256": "a59653593b80d4ed160d4cc2fc26a899d999f9e15ff7b038bce87f4966f51920"
+    },
+    {
+      "path": "config/analysis.json",
+      "sha256": "41c3f9f87ad92f5795d39be2a416235c1fd31f75f86162c2205670db51a0028b"
+    }
+  ],
+  "local_rebuildable_artifacts": [
+    {
+      "bytes": 2767761,
+      "path": "data/derived/reference_heart.npz",
+      "published": false,
+      "rebuild_command": "cardio-sca-mvp run --force-reference",
+      "sha256": "69e33b1cfa3e4744bb80cd9f872d40a89a472ae0d0626e800dc50bb1589f9e60"
+    },
+    {
+      "bytes": 3835212,
+      "path": "data/derived/reference_lung.npz",
+      "published": false,
+      "rebuild_command": "cardio-sca-mvp run --force-reference",
+      "sha256": "1d7585f7d5c4a7288a9b48a6f6be7351d963614bd45cb9bb38aca1a5fd67ab44"
+    }
+  ],
+  "pipeline_version": "0.1.0",
+  "published_artifacts": [
+    {
+      "bytes": 10049,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/source_registry.json",
+      "sha256": "e640c30112b710c9b018dff70fc1d4c5dd271d988848f2d4ed158ef076864d1f"
+    },
+    {
+      "bytes": 840,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/state_metadata.tsv",
+      "sha256": "6ba1007372810e3d125061882256d2ebeb610dc7d6ffcf3c94a37d029252dbcc"
+    },
+    {
+      "bytes": 15584,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/state_programs.tsv",
+      "sha256": "098138a759f913a5524cf85a4c53c4c228cd99aa8c8afb1a8244dd633c9b34f0"
+    },
+    {
+      "bytes": 1483900,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/healthy_reference_state_centroids.tsv.gz",
+      "sha256": "51884604fdd6df1d8a7f0150c78d32b5ab731d666e18a55e9d9ed76cd87a49ea"
+    },
+    {
+      "bytes": 2436,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/candidate_adjacencies.tsv",
+      "sha256": "1d529d7dc4c1274a826bda19de5095a4c1322cb087eb1518321542f109a6ae9d"
+    },
+    {
+      "bytes": 183148,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/sca_signal_ledger.tsv",
+      "sha256": "bc62edbe81112a797a691235329175baedec37ea8e64c33caa179edbba74701c"
+    },
+    {
+      "bytes": 5676,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/sca_transition_mapping.tsv",
+      "sha256": "70de3e629bc0549766ab386c9805765cebca759095331b443bf2e19580f0da1f"
+    },
+    {
+      "bytes": 8389,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/ranked_hypotheses.tsv",
+      "sha256": "e4920243d273aa35c041f3ea2930f732602917f4d517e7fcdf02c8c6b1d85b9e"
+    },
+    {
+      "bytes": 34953,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/decision_log.tsv",
+      "sha256": "115a83a35d2441b310585c3885bd09288a87afd71fc7c730bdebb6989e91e8f8"
+    },
+    {
+      "bytes": 2262,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/validation_report.json",
+      "sha256": "efdec1050e271972a0a0a8d649bde52c3ae17cd264ce683fd818d54619a6f0f3"
+    },
+    {
+      "bytes": 688,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/compute_preflight.json",
+      "sha256": "dba6fecc24416f19f1eae961f5a69417da1121224a51e7071f3fa51d2fe1e380"
+    },
+    {
+      "bytes": 1607,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/follow_up_plan.md",
+      "sha256": "67eb664fa8f1d6b3d7c97790c469fe827abbea8a5130e972c9165211ad71b5d6"
+    },
+    {
+      "bytes": 1619,
+      "parents": [
+        "config/sources.json",
+        "config/analysis.json"
+      ],
+      "path": "results/mvp/report.md",
+      "sha256": "0a9b66667b238ac1f2d09fca2f2b20a5ccddab7f61409bef778a50efbd1fd101"
+    }
+  ],
+  "schema_version": "1.0.0"
+}

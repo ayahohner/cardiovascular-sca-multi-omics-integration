@@ -1,0 +1,15 @@
+organ	state	source_state	cell_count	donor_count	sample_count	study_count
+heart	cardiac_arterial	EC5_art	20317	14	144	1
+heart	cardiac_atrial	EC7_atria	4474	13	88	1
+heart	cardiac_capillary_1	EC1_cap	27417	14	145	1
+heart	cardiac_capillary_2	EC2_cap	13445	14	141	1
+heart	cardiac_capillary_3	EC3_cap	16897	14	141	1
+heart	cardiac_lymphatic	EC8_ln	716	10	78	1
+heart	cardiac_venous	EC6_ven	8486	14	142	1
+lung	pulmonary_aerocyte_capillary	EC aerocyte capillary	7040	22	30	5
+lung	pulmonary_arterial	EC arterial	7044	38	53	9
+lung	pulmonary_general_capillary	EC general capillary	15763	30	46	8
+lung	pulmonary_lymphatic_differentiating	Lymphatic EC differentiating	466	3	5	2
+lung	pulmonary_lymphatic_mature	Lymphatic EC mature	3668	24	39	8
+lung	pulmonary_venous	EC venous pulmonary	6135	34	48	7
+lung	systemic_venous_lung	EC venous systemic	6300	37	64	8

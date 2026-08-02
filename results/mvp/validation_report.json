@@ -1,0 +1,93 @@
+{
+  "check_count": 17,
+  "checks": [
+    {
+      "detail": "5 source assets",
+      "name": "all_sources_admitted",
+      "passed": true
+    },
+    {
+      "detail": "organs=['heart', 'lung']",
+      "name": "heart_and_lung_present",
+      "passed": true
+    },
+    {
+      "detail": "minimum donors=3",
+      "name": "state_donor_support",
+      "passed": true
+    },
+    {
+      "detail": "eligible=9 total=10",
+      "name": "eligible_edges_exist",
+      "passed": true
+    },
+    {
+      "detail": "minimum=1.0",
+      "name": "donor_stability_gate",
+      "passed": true
+    },
+    {
+      "detail": "evaluated=5",
+      "name": "study_stability_gate",
+      "passed": true
+    },
+    {
+      "detail": "MVP has no eligible time, velocity, or direct adult-organ perturbation source",
+      "name": "all_edges_undirected",
+      "passed": true
+    },
+    {
+      "detail": "roles=['endothelial_perturbational_prior', 'immune_association']",
+      "name": "both_sca_evidence_roles_present",
+      "passed": true
+    },
+    {
+      "detail": "mappings=20",
+      "name": "mapping_preserves_undirected_status",
+      "passed": true
+    },
+    {
+      "detail": "mapped=20 minimum_overlap=258",
+      "name": "mapped_signals_have_gene_overlap",
+      "passed": true
+    },
+    {
+      "detail": "hypotheses=9 components=6",
+      "name": "component_scores_visible_and_bounded",
+      "passed": true
+    },
+    {
+      "detail": "ranked=9",
+      "name": "ranked_edges_are_eligible",
+      "passed": true
+    },
+    {
+      "detail": "violations=[]",
+      "name": "claim_boundaries",
+      "passed": true
+    },
+    {
+      "detail": "tracked=[]",
+      "name": "raw_and_derived_data_not_tracked",
+      "passed": true
+    },
+    {
+      "detail": "peak_rss_bytes=1974796288; host_memory_bytes=34359738368",
+      "name": "compute_memory_margin",
+      "passed": true
+    },
+    {
+      "detail": "source_bytes=6936558418; available_bytes=323235491840",
+      "name": "compute_disk_margin",
+      "passed": true
+    },
+    {
+      "detail": "heart, lung, cached full pipeline, and repeated scientific hashes",
+      "name": "compute_completion_and_repeatability",
+      "passed": true
+    }
+  ],
+  "failed_count": 0,
+  "passed_count": 17,
+  "status": "passed"
+}

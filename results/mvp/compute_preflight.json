@@ -1,0 +1,23 @@
+{
+  "batch_cells": 2048,
+  "cached_full_pipeline": {
+    "completion_status": "passed",
+    "elapsed_seconds": 8.01
+  },
+  "disk_available_bytes_before_analysis": 323235491840,
+  "heart_reference": {
+    "completion_status": "passed",
+    "elapsed_seconds": 6.07,
+    "peak_rss_bytes": 780992512
+  },
+  "host_memory_bytes": 34359738368,
+  "interpretation": "observed local feasibility benchmark; not a performance guarantee on other hosts",
+  "lung_reference": {
+    "completion_status": "passed",
+    "elapsed_seconds": 16.47,
+    "peak_rss_bytes": 1974796288
+  },
+  "observed_on": "2026-08-02",
+  "scientific_artifact_hashes_match_on_repeat": true,
+  "source_total_bytes": 6936558418
+}

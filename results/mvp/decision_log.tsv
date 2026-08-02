@@ -1,0 +1,273 @@
+stage	subject	trigger	response	detail
+reference_harmonization	heart:EC10_CMC-like	cardiomyocyte-like endothelial label excluded from the canonical reference	excluded	level=state; cells=2608; donors=14
+reference_harmonization	heart:EC4_immune	immune-like endothelial label excluded from the canonical reference	excluded	level=state; cells=5637; donors=14
+reference_harmonization	heart:EC7_atria	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	heart:EC8_ln	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	heart:EC8_ln	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	heart:EC8_ln	below min_cells_per_donor_state	excluded	level=donor_state; cells=12; donors=1
+reference_harmonization	heart:EC8_ln	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	heart:EC9_FB-like	fibroblast-like endothelial label excluded from the canonical reference	excluded	level=state; cells=533; donors=14
+reference_harmonization	heart:cardiac_endocardial	the admitted vascular object has no source label that supports a defensible endocardial mapping	abstained	level=expected_state; cells=0; donors=0
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=16; donors=1
+reference_harmonization	lung:EC aerocyte capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=12; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=7; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=12; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=16; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=12; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=19; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=14; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC arterial	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=19; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=7; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=16; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:EC general capillary	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=19; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=18; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=14; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=7; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous pulmonary	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=19; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=14; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=18; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=7; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=7; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=10; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=7; donors=1
+reference_harmonization	lung:EC venous systemic	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=14; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:Lymphatic EC differentiating	below min_cells_per_donor_state	excluded	level=donor_state; cells=14; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=14; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=12; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=12; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=6; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=8; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=13; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=11; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=2; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=16; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=7; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=17; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=3; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=5; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=14; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=4; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=19; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=1; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=9; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:Lymphatic EC mature	below min_cells_per_donor_state	excluded	level=donor_state; cells=15; donors=1
+reference_harmonization	lung:Lymphatic EC proliferating	28 cells; insufficient support for the reference	excluded	level=state; cells=28; donors=10
+source_admission	gpl570-annotation	verified	admitted	bytes=8471521; sha256=d7cd44352127b1e34f3a720ebea86093ef255a38f1612a85a2962b71bde8f394
+source_admission	gse274340-huvec	verified	admitted	bytes=41553920; sha256=778cd20376a1861f2ffe47e236ac31ddfb2bf398cabbd54a31da440ac7b0bd7c
+source_admission	gse53441-pbmc	verified	admitted	bytes=2999901; sha256=9ab85f3ac0f8278fc6acd31560b142512108ba2e1d8877d24faa67888d420522
+source_admission	heart-vascular-cxg-23ea6682	verified	admitted	bytes=1009920229; sha256=e11f45bc36cbff3b6b368b96f5a49b801dbd7dcbdb494043183635c3688c2a90
+source_admission	hlca-core-cxg-688185ad	verified	admitted	bytes=5873612847; sha256=1cbdde1e513a31bdb6a3f70296e2d0612760d2af4032e239c94596ea87b44007
+transition_validation	heart::cardiac_atrial__cardiac_lymphatic	state_space_distance_exceeds_threshold	excluded	donor_stability=1.000; study_stability=nan; parameter_stability=0.667

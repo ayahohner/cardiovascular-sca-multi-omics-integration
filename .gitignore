@@ -9,9 +9,15 @@
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
 
 # Keep large or generated materials local
 data/*
 !data/README.md
 results/*
 !results/.gitkeep
+!results/mvp/
+!results/mvp/**

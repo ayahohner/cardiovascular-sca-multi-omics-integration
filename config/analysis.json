@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0.0",
+  "random_seed": 20260802,
+  "reference_sources": [
+    {
+      "source_id": "heart-vascular-cxg-23ea6682",
+      "organ": "heart",
+      "state_column": "cell_states",
+      "donor_column": "donor_id",
+      "sample_column": "sample",
+      "study_column": null,
+      "state_map": {
+        "EC1_cap": "cardiac_capillary_1",
+        "EC2_cap": "cardiac_capillary_2",
+        "EC3_cap": "cardiac_capillary_3",
+        "EC5_art": "cardiac_arterial",
+        "EC6_ven": "cardiac_venous",
+        "EC7_atria": "cardiac_atrial",
+        "EC8_ln": "cardiac_lymphatic"
+      },
+      "excluded_states": {
+        "EC4_immune": "immune-like endothelial label excluded from the canonical reference",
+        "EC9_FB-like": "fibroblast-like endothelial label excluded from the canonical reference",
+        "EC10_CMC-like": "cardiomyocyte-like endothelial label excluded from the canonical reference"
+      },
+      "unavailable_expected_states": {
+        "cardiac_endocardial": "the admitted vascular object has no source label that supports a defensible endocardial mapping"
+      }
+    },
+    {
+      "source_id": "hlca-core-cxg-688185ad",
+      "organ": "lung",
+      "state_column": "ann_finest_level",
+      "donor_column": "donor_id",
+      "sample_column": "sample",
+      "study_column": "study",
+      "state_map": {
+        "EC arterial": "pulmonary_arterial",
+        "EC aerocyte capillary": "pulmonary_aerocyte_capillary",
+        "EC general capillary": "pulmonary_general_capillary",
+        "EC venous pulmonary": "pulmonary_venous",
+        "EC venous systemic": "systemic_venous_lung",
+        "Lymphatic EC mature": "pulmonary_lymphatic_mature",
+        "Lymphatic EC differentiating": "pulmonary_lymphatic_differentiating"
+      },
+      "excluded_states": {
+        "Lymphatic EC proliferating": "28 cells; insufficient support for the reference"
+      },
+      "unavailable_expected_states": {}
+    }
+  ],
+  "pseudobulk": {
+    "matrix_location": "raw.X",
+    "batch_cells": 2048,
+    "min_cells_per_donor_state": 20,
+    "min_donors_per_state": 3,
+    "normalization_target": 1000000.0
+  },
+  "adjacency": {
+    "neighbors": 2,
+    "max_variable_genes": 1500,
+    "max_cosine_distance": 0.8,
+    "min_gene_detection_fraction": 0.2,
+    "excluded_gene_prefixes": ["MT-", "RPL", "RPS"],
+    "min_donor_leaveout_stability": 0.6,
+    "min_study_leaveout_stability": 0.5,
+    "min_parameter_stability": 0.5
+  },
+  "signatures": {
+    "max_genes_per_direction": 150,
+    "huvec_min_abs_log2_fold_change": 0.5,
+    "huvec_min_total_counts": 100,
+    "pbmc_fdr_threshold": 0.1,
+    "pbmc_min_abs_standardized_effect": 0.5
+  },
+  "ranking": {
+    "weights": {
+      "reference_reproducibility": 0.25,
+      "directionality_evidence": 0.05,
+      "sca_signal_compatibility": 0.25,
+      "donor_study_coverage": 0.2,
+      "analysis_sensitivity": 0.15,
+      "transport_fitness": 0.1
+    },
+    "transport_fitness": 0.25
+  },
+  "compute_preflight": {
+    "observed_on": "2026-08-02",
+    "host_memory_bytes": 34359738368,
+    "disk_available_bytes_before_analysis": 323235491840,
+    "batch_cells": 2048,
+    "heart_reference": {
+      "elapsed_seconds": 6.07,
+      "peak_rss_bytes": 780992512,
+      "completion_status": "passed"
+    },
+    "lung_reference": {
+      "elapsed_seconds": 16.47,
+      "peak_rss_bytes": 1974796288,
+      "completion_status": "passed"
+    },
+    "cached_full_pipeline": {
+      "elapsed_seconds": 8.01,
+      "completion_status": "passed"
+    },
+    "scientific_artifact_hashes_match_on_repeat": true
+  }
+}
