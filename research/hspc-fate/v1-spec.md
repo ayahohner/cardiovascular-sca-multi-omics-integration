@@ -83,7 +83,7 @@ Healthy cells define the geometry and endpoint semantics. Condition data cannot 
 ## Functional Requirements
 
 - **[REQ-011]** WHEN donor manifests are built, the HSPC fate workflow shall assign every included matrix and cell to one unique donor, condition, assay, tissue, cohort, and inclusion decision.
-- **[REQ-012]** WHEN discovery matrices are processed, the HSPC fate workflow shall apply frozen source-aware empty-droplet, library-size, mitochondrial, CD34-identity, and doublet controls and record donor-level retention.
+- **[REQ-012]** WHEN discovery matrices are processed, the HSPC fate workflow shall apply frozen source-aware barcode-admission, library-size, mitochondrial, CD34-identity, and doublet controls and record donor-level retention.
 - **[REQ-013]** WHILE the state vocabulary is being defined, the HSPC fate workflow shall use only healthy discovery cells and freeze HSC/MPP root, intermediate, and three terminal-lineage definitions before estimating condition contrasts.
 - **[REQ-014]** IF HSC/MPP root cells or any terminal lineage cannot be distinguished in at least two healthy discovery donors, THEN the HSPC fate workflow shall stop fate estimation and classify the result as insufficient_evidence.
 - **[REQ-015]** WHEN the discovery topology is fitted, the HSPC fate workflow shall use only QC-passing healthy discovery cells and verify root-to-terminal connectivity, marker order, donor support, and graph stability.
@@ -98,7 +98,7 @@ Healthy cells define the geometry and endpoint semantics. Condition data cannot 
 - **[AC-012]** (References REQ-012)
   - **Given** the six discovery donor matrices
   - **When** preprocessing completes
-  - **Then** the QC ledger records the frozen threshold, pass count, and exclusion count for every control and donor
+  - **Then** the QC ledger records the fixed barcode floor, diagnostic barcode-rank knee, threshold, pass count, and exclusion count for every control and donor
 
 - **[AC-013]** (References REQ-013)
   - **Given** an unfrozen state vocabulary
@@ -121,11 +121,11 @@ Two estimators and donor perturbations test whether the inferred direction is an
 
 ## Functional Requirements
 
-- **[REQ-016]** WHEN the healthy discovery topology passes validation, the HSPC fate workflow shall estimate normalized terminal-fate probabilities with a primary absorbing Markov estimator and an independently configured pseudotime-fate estimator.
+- **[REQ-016]** WHEN the healthy discovery topology passes validation, the HSPC fate workflow shall estimate normalized terminal-fate probabilities with a primary absorbing Markov estimator and an independent projection to pseudotime-defined terminal centroids.
 - **[REQ-017]** WHEN SCA cells are mapped, the HSPC fate workflow shall preserve the frozen healthy transformation, topology, root definition, terminal definitions, and model parameters.
 - **[REQ-018]** WHEN cell-level fate probabilities are aggregated, the HSPC fate workflow shall calculate one mean probability per donor and lineage before computing a condition contrast.
-- **[REQ-019]** The HSPC fate workflow shall compute exact donor-label permutations, six leave-one-donor-out discovery fits, estimator-direction concordance, and label-permutation null controls for every estimable lineage.
-- **[REQ-020]** IF estimator directions disagree or fewer than five of six leave-one-donor-out discovery fits retain the full-data direction, THEN the HSPC fate workflow shall mark the discovery lineage unstable.
+- **[REQ-019]** The HSPC fate workflow shall compute and record every exact donor-label permutation, six leave-one-donor-out discovery effects, estimator-direction concordance, and label-permutation null controls for every estimable lineage.
+- **[REQ-020]** IF estimator directions disagree or fewer than five of six leave-one-donor-out discovery effects retain the full-data direction, THEN the HSPC fate workflow shall mark the discovery lineage unstable.
 
 ## Acceptance Criteria
 
@@ -147,10 +147,10 @@ Two estimators and donor perturbations test whether the inferred direction is an
 - **[AC-019]** (References REQ-019)
   - **Given** an estimable discovery lineage
   - **When** stability analysis completes
-  - **Then** all exact label assignments, six leave-one-donor-out fits, both estimator directions, and the null-control result are recorded
+  - **Then** all exact label assignments, six donor-specific leave-one-out effects, both estimator directions, and the null-control result are recorded
 
 - **[AC-020]** (References REQ-020)
-  - **Given** a discovery lineage with estimator disagreement or fewer than five direction-retaining leave-one-donor-out fits
+  - **Given** a discovery lineage with estimator disagreement or fewer than five direction-retaining leave-one-donor-out effects
   - **When** discovery status is assigned
   - **Then** the lineage is marked unstable and cannot support replicated_inferred_allocation_difference or dataset_specific_inferred_allocation_difference
 

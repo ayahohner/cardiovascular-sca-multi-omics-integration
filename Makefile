@@ -1,4 +1,4 @@
-.PHONY: setup fetch preflight mvp verify test test-fast clean-cache
+.PHONY: setup fetch preflight mvp verify hspc-fetch hspc-preflight hspc-mvp hspc-verify test test-fast clean-cache
 
 setup:
 	python3 -m venv .venv
@@ -18,8 +18,20 @@ mvp:
 verify:
 	.venv/bin/cardio-sca-mvp verify
 
+hspc-fetch:
+	.venv/bin/hspc-fate-mvp fetch
+
+hspc-preflight:
+	.venv/bin/hspc-fate-mvp preflight
+
+hspc-mvp:
+	.venv/bin/hspc-fate-mvp run
+
+hspc-verify:
+	.venv/bin/hspc-fate-mvp verify
+
 test:
-	.venv/bin/pytest --cov=cardio_sca_mvp --cov-report=term-missing
+	.venv/bin/pytest --cov=cardio_sca_mvp --cov=hspc_fate_mvp --cov-report=term-missing
 
 test-fast:
 	.venv/bin/pytest -m "not data"

@@ -20,3 +20,5 @@ data/*
 results/*
 !results/mvp/
 !results/mvp/**
+!results/hspc-fate/
+!results/hspc-fate/**

@@ -43,7 +43,7 @@
         "The cohort is small.",
         "SCD HSPCs were collected in a mobilization and gene-therapy context.",
         "Cross-sectional RNA profiles do not observe cell fate.",
-        "Exact asset checksums remain to be frozen at retrieval."
+        "Exact required-asset checksums are frozen separately in analysis.json."
       ]
     },
     {

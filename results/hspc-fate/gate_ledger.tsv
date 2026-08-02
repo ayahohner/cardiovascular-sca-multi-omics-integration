@@ -1,0 +1,11 @@
+gate	status	evidence	response
+required_source_admission	passed	7 of 7 required archives match frozen byte counts and SHA-256 checksums	continue
+donor_manifest_cardinality	passed	discovery donors=6; validation donors=9	continue
+discovery_published_cell_count	passed	retained=58971; published=54689	continue
+validation_published_cell_count	passed	retained=44124; published=40862	continue
+discovery_topology	passed	"{""marker_order"": {""erythroid_megakaryocytic"": true, ""lymphoid"": true, ""myeloid"": true}, ""minimum_neighbor_sensitivity_correlation"": 0.8, ""neighbor_sensitivity_correlation"": 0.9724098333815104, ""passed"": true, ""root_healthy_donors"": 3, ""root_to_all_terminals"": true, ""terminal_healthy_donors"": {""erythroid_megakaryocytic"": 3, ""lymphoid"": 3, ""myeloid"": 3}}"	continue
+validation_topology	passed	"{""marker_order"": {""erythroid_megakaryocytic"": true, ""lymphoid"": true, ""myeloid"": true}, ""minimum_neighbor_sensitivity_correlation"": 0.8, ""neighbor_sensitivity_correlation"": 0.984055802990491, ""passed"": true, ""root_healthy_donors"": 4, ""root_to_all_terminals"": true, ""terminal_healthy_donors"": {""erythroid_megakaryocytic"": 2, ""lymphoid"": 2, ""myeloid"": 3}}"	continue
+discovery_model_frozen_during_mapping	passed	all 5 model component hashes match	continue
+validation_model_frozen_during_mapping	passed	all 5 model component hashes match	continue
+discovery_root_cell_reliability	passed	HD175=2824; HD177=2379; HD192=3526; SCD2=3561; SCD3=4816; SCD4=2970	continue
+validation_root_cell_reliability	failed	BM1=4067; BM2=3310; BM3=1743; BM4=644; SCD1=103; SCD2=356; SCD3=672; SCD4=279; SCD5=4	retain estimates for audit and classify as insufficient_evidence

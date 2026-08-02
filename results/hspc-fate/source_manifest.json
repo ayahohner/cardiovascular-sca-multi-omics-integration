@@ -1,0 +1,256 @@
+{
+  "assets": [
+    {
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "cohort": "discovery",
+      "condition": "healthy",
+      "donor": "HD175",
+      "donor_label": "HD175",
+      "expected_bytes": 229962170,
+      "expected_sha256": "7fa91227067a272084c52dc4b08350bf1bf88d15534cd91a98ece4f8c26dc913",
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact required-asset checksums are frozen separately in analysis.json."
+      ],
+      "local_path": "data/raw/hspc-fate/discovery/HD175.zip",
+      "observed_bytes": 229962170,
+      "observed_sha256": "7fa91227067a272084c52dc4b08350bf1bf88d15534cd91a98ece4f8c26dc913",
+      "preprocessing_state": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "reason": "verified",
+      "resolved_url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD175.zip",
+      "retrieval_time_utc": "2026-08-02T22:41:38.048946+00:00",
+      "source_id": "s-bsst1258-hspc-scrna",
+      "status": "admitted",
+      "terms": "CC0",
+      "tissue": "plerixafor-mobilized CD34-positive HSPCs"
+    },
+    {
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "cohort": "discovery",
+      "condition": "healthy",
+      "donor": "HD177",
+      "donor_label": "HD177",
+      "expected_bytes": 267984397,
+      "expected_sha256": "0b3d206a557f36d4b14f34e388fa786cdcd4b13e1b6b22c9b184c95c2d2ea0d4",
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact required-asset checksums are frozen separately in analysis.json."
+      ],
+      "local_path": "data/raw/hspc-fate/discovery/HD177.zip",
+      "observed_bytes": 267984397,
+      "observed_sha256": "0b3d206a557f36d4b14f34e388fa786cdcd4b13e1b6b22c9b184c95c2d2ea0d4",
+      "preprocessing_state": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "reason": "verified",
+      "resolved_url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD177.zip",
+      "retrieval_time_utc": "2026-08-02T22:41:50.335497+00:00",
+      "source_id": "s-bsst1258-hspc-scrna",
+      "status": "admitted",
+      "terms": "CC0",
+      "tissue": "plerixafor-mobilized CD34-positive HSPCs"
+    },
+    {
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "cohort": "discovery",
+      "condition": "healthy",
+      "donor": "HD192",
+      "donor_label": "HD192",
+      "expected_bytes": 282674181,
+      "expected_sha256": "78b6e595f8801f04529af5d0b80818d37e8c616df10db1b91dfe9ebf1e160e47",
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact required-asset checksums are frozen separately in analysis.json."
+      ],
+      "local_path": "data/raw/hspc-fate/discovery/HD192.zip",
+      "observed_bytes": 282674181,
+      "observed_sha256": "78b6e595f8801f04529af5d0b80818d37e8c616df10db1b91dfe9ebf1e160e47",
+      "preprocessing_state": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "reason": "verified",
+      "resolved_url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD192.zip",
+      "retrieval_time_utc": "2026-08-02T22:42:01.886199+00:00",
+      "source_id": "s-bsst1258-hspc-scrna",
+      "status": "admitted",
+      "terms": "CC0",
+      "tissue": "plerixafor-mobilized CD34-positive HSPCs"
+    },
+    {
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "cohort": "discovery",
+      "condition": "SCD",
+      "donor": "SCD2",
+      "donor_label": "SCD2",
+      "expected_bytes": 282854932,
+      "expected_sha256": "69e89cd8d8e8e09aed257e1d5cd9017faeb2bd315cb70247f3358671afa93030",
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact required-asset checksums are frozen separately in analysis.json."
+      ],
+      "local_path": "data/raw/hspc-fate/discovery/SCD2.zip",
+      "observed_bytes": 282854932,
+      "observed_sha256": "69e89cd8d8e8e09aed257e1d5cd9017faeb2bd315cb70247f3358671afa93030",
+      "preprocessing_state": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "reason": "verified",
+      "resolved_url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD2.zip",
+      "retrieval_time_utc": "2026-08-02T22:42:11.733990+00:00",
+      "source_id": "s-bsst1258-hspc-scrna",
+      "status": "admitted",
+      "terms": "CC0",
+      "tissue": "plerixafor-mobilized CD34-positive HSPCs"
+    },
+    {
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "cohort": "discovery",
+      "condition": "SCD",
+      "donor": "SCD3",
+      "donor_label": "SCD3",
+      "expected_bytes": 299245820,
+      "expected_sha256": "74cf5af423e370f86f05f94853e2196e059f1cd090f6a7438a62a36320ae203d",
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact required-asset checksums are frozen separately in analysis.json."
+      ],
+      "local_path": "data/raw/hspc-fate/discovery/SCD3.zip",
+      "observed_bytes": 299245820,
+      "observed_sha256": "74cf5af423e370f86f05f94853e2196e059f1cd090f6a7438a62a36320ae203d",
+      "preprocessing_state": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "reason": "verified",
+      "resolved_url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD3.zip",
+      "retrieval_time_utc": "2026-08-02T22:42:24.237825+00:00",
+      "source_id": "s-bsst1258-hspc-scrna",
+      "status": "admitted",
+      "terms": "CC0",
+      "tissue": "plerixafor-mobilized CD34-positive HSPCs"
+    },
+    {
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "cohort": "discovery",
+      "condition": "SCD",
+      "donor": "SCD4",
+      "donor_label": "SCD4",
+      "expected_bytes": 363004199,
+      "expected_sha256": "8f40af05b37f5413d6b04a84a62cce0795e99d8b4d0cb90eb0da8df39b3a51d0",
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact required-asset checksums are frozen separately in analysis.json."
+      ],
+      "local_path": "data/raw/hspc-fate/discovery/SCD4.zip",
+      "observed_bytes": 363004199,
+      "observed_sha256": "8f40af05b37f5413d6b04a84a62cce0795e99d8b4d0cb90eb0da8df39b3a51d0",
+      "preprocessing_state": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "reason": "verified",
+      "resolved_url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD4.zip",
+      "retrieval_time_utc": "2026-08-02T22:42:37.524750+00:00",
+      "source_id": "s-bsst1258-hspc-scrna",
+      "status": "admitted",
+      "terms": "CC0",
+      "tissue": "plerixafor-mobilized CD34-positive HSPCs"
+    },
+    {
+      "assay": "10x single-cell RNA-seq of bone-marrow CD34-positive cells",
+      "cohort": "validation",
+      "condition": "mixed_archive",
+      "donor": "GSE133181",
+      "donor_label": "GSE133181",
+      "expected_bytes": 303196160,
+      "expected_sha256": "214c1bbab23479a1fb2733369c7bd1c313b635288f08326e773789b7446360ec",
+      "limitations": [
+        "The cohort is small and differs from the discovery collection context.",
+        "Thalassemia and lineage-depleted samples are outside the v1 comparison.",
+        "Cross-sectional RNA profiles do not observe cell fate."
+      ],
+      "local_path": "data/raw/hspc-fate/validation/GSE133181_RAW.tar",
+      "observed_bytes": 303196160,
+      "observed_sha256": "214c1bbab23479a1fb2733369c7bd1c313b635288f08326e773789b7446360ec",
+      "preprocessing_state": "GEO supplementary TAR of donor-level processed matrices",
+      "reason": "verified",
+      "resolved_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133181/suppl/GSE133181_RAW.tar",
+      "retrieval_time_utc": "2026-08-02T22:42:47.034157+00:00",
+      "source_id": "gse133181-bm-cd34-scrna",
+      "status": "admitted",
+      "terms": "NCBI GEO public repository terms; source attribution required",
+      "tissue": "bone-marrow CD34-positive cells"
+    }
+  ],
+  "module": "hspc-fate",
+  "required_source_ids": [
+    "gse133181-bm-cd34-scrna",
+    "s-bsst1258-hspc-scrna"
+  ],
+  "schema_version": "1.0.0",
+  "sources": [
+    {
+      "access": "open",
+      "accession": "GSE133181",
+      "admission": "required_validation",
+      "assay": "10x single-cell RNA-seq of bone-marrow CD34-positive cells",
+      "asset_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133181/suppl/GSE133181_RAW.tar"
+      ],
+      "biological_unit": "donor",
+      "citation": "Hua et al. Single-cell RNA-seq analysis of human bone marrow reveals molecular features of hematopoietic stem cells in sickle cell disease. Blood (2020). doi:10.1182/blood.2019002301",
+      "comparison": "4 healthy donors and 5 SCD donors; 3 thalassemia donors and 1 lineage-depleted healthy sample excluded",
+      "eligible_for_v1": true,
+      "expected_bytes": 303196160,
+      "format": "GEO supplementary TAR of donor-level processed matrices",
+      "id": "gse133181-bm-cd34-scrna",
+      "landing_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE133181",
+      "license": "NCBI GEO public repository terms; source attribution required",
+      "limitations": [
+        "The cohort is small and differs from the discovery collection context.",
+        "Thalassemia and lineage-depleted samples are outside the v1 comparison.",
+        "Cross-sectional RNA profiles do not observe cell fate."
+      ],
+      "organism": "Homo sapiens",
+      "verified": [
+        "GEO reports public status, donor groups, raw SRA availability, and a processed supplementary archive.",
+        "The processed archive resolves without authentication."
+      ]
+    },
+    {
+      "access": "open",
+      "accession": "S-BSST1258",
+      "admission": "required_discovery",
+      "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
+      "asset_urls": [
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD175.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD177.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD192.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD2.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD3.zip",
+        "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD4.zip"
+      ],
+      "biological_unit": "donor",
+      "citation": "Severe inflammation and lineage skewing is associated with poor engraftment of engineered hematopoietic stem cells in patients with sickle cell disease. Nature Communications (2025). doi:10.1038/s41467-025-58321-4",
+      "comparison": "3 healthy donors and 3 SCD donors",
+      "eligible_for_v1": true,
+      "format": "donor-separated 10x feature-barcode matrices in ZIP archives",
+      "id": "s-bsst1258-hspc-scrna",
+      "landing_url": "https://www.ebi.ac.uk/biostudies/studies/S-BSST1258",
+      "license": "CC0",
+      "limitations": [
+        "The cohort is small.",
+        "SCD HSPCs were collected in a mobilization and gene-therapy context.",
+        "Cross-sectional RNA profiles do not observe cell fate.",
+        "Exact required-asset checksums are frozen separately in analysis.json."
+      ],
+      "metadata_url": "https://www.ebi.ac.uk/biostudies/api/v1/studies/S-BSST1258",
+      "organism": "Homo sapiens",
+      "verified": [
+        "The BioStudies API reports CC0.",
+        "All six donor archives resolve without authentication.",
+        "The archives contain unfiltered feature-barcode matrices, so cell calling is required."
+      ]
+    }
+  ]
+}

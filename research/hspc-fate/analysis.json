@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0.0",
+  "random_seed": 1729,
+  "required_assets": [
+    {
+      "source_id": "s-bsst1258-hspc-scrna",
+      "cohort": "discovery",
+      "donor": "HD175",
+      "condition": "healthy",
+      "url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD175.zip",
+      "local_path": "data/raw/hspc-fate/discovery/HD175.zip",
+      "expected_bytes": 229962170,
+      "sha256": "7fa91227067a272084c52dc4b08350bf1bf88d15534cd91a98ece4f8c26dc913"
+    },
+    {
+      "source_id": "s-bsst1258-hspc-scrna",
+      "cohort": "discovery",
+      "donor": "HD177",
+      "condition": "healthy",
+      "url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD177.zip",
+      "local_path": "data/raw/hspc-fate/discovery/HD177.zip",
+      "expected_bytes": 267984397,
+      "sha256": "0b3d206a557f36d4b14f34e388fa786cdcd4b13e1b6b22c9b184c95c2d2ea0d4"
+    },
+    {
+      "source_id": "s-bsst1258-hspc-scrna",
+      "cohort": "discovery",
+      "donor": "HD192",
+      "condition": "healthy",
+      "url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/HD192.zip",
+      "local_path": "data/raw/hspc-fate/discovery/HD192.zip",
+      "expected_bytes": 282674181,
+      "sha256": "78b6e595f8801f04529af5d0b80818d37e8c616df10db1b91dfe9ebf1e160e47"
+    },
+    {
+      "source_id": "s-bsst1258-hspc-scrna",
+      "cohort": "discovery",
+      "donor": "SCD2",
+      "condition": "SCD",
+      "url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD2.zip",
+      "local_path": "data/raw/hspc-fate/discovery/SCD2.zip",
+      "expected_bytes": 282854932,
+      "sha256": "69e89cd8d8e8e09aed257e1d5cd9017faeb2bd315cb70247f3358671afa93030"
+    },
+    {
+      "source_id": "s-bsst1258-hspc-scrna",
+      "cohort": "discovery",
+      "donor": "SCD3",
+      "condition": "SCD",
+      "url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD3.zip",
+      "local_path": "data/raw/hspc-fate/discovery/SCD3.zip",
+      "expected_bytes": 299245820,
+      "sha256": "74cf5af423e370f86f05f94853e2196e059f1cd090f6a7438a62a36320ae203d"
+    },
+    {
+      "source_id": "s-bsst1258-hspc-scrna",
+      "cohort": "discovery",
+      "donor": "SCD4",
+      "condition": "SCD",
+      "url": "https://www.ebi.ac.uk/biostudies/files/S-BSST1258/SCD4.zip",
+      "local_path": "data/raw/hspc-fate/discovery/SCD4.zip",
+      "expected_bytes": 363004199,
+      "sha256": "8f40af05b37f5413d6b04a84a62cce0795e99d8b4d0cb90eb0da8df39b3a51d0"
+    },
+    {
+      "source_id": "gse133181-bm-cd34-scrna",
+      "cohort": "validation",
+      "donor": "GSE133181",
+      "condition": "mixed_archive",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133181/suppl/GSE133181_RAW.tar",
+      "local_path": "data/raw/hspc-fate/validation/GSE133181_RAW.tar",
+      "expected_bytes": 303196160,
+      "sha256": "214c1bbab23479a1fb2733369c7bd1c313b635288f08326e773789b7446360ec"
+    }
+  ],
+  "validation_samples": [
+    {"archive": "GSM3901485_BM1.tar.gz", "donor": "BM1", "condition": "healthy", "include": true},
+    {"archive": "GSM3901486_BM2.tar.gz", "donor": "BM2", "condition": "healthy", "include": true},
+    {"archive": "GSM3901487_BM3.tar.gz", "donor": "BM3", "condition": "healthy", "include": true},
+    {"archive": "GSM3901488_BM4.tar.gz", "donor": "BM4", "condition": "healthy", "include": true},
+    {"archive": "GSM3901489_BT1.tar.gz", "donor": "BT1", "condition": "thalassemia", "include": false},
+    {"archive": "GSM3901490_BT2.tar.gz", "donor": "BT2", "condition": "thalassemia", "include": false},
+    {"archive": "GSM3901491_BT3.tar.gz", "donor": "BT3", "condition": "thalassemia", "include": false},
+    {"archive": "GSM3901492_C1.tar.gz", "donor": "C1", "condition": "healthy_lineage_depleted", "include": false},
+    {"archive": "GSM3901493_SCD1.tar.gz", "donor": "SCD1", "condition": "SCD", "include": true},
+    {"archive": "GSM3901494_SCD2.tar.gz", "donor": "SCD2", "condition": "SCD", "include": true},
+    {"archive": "GSM3901495_SCD3.tar.gz", "donor": "SCD3", "condition": "SCD", "include": true},
+    {"archive": "GSM3901496_SCD4.tar.gz", "donor": "SCD4", "condition": "SCD", "include": true},
+    {"archive": "GSM3901498_SCD5.tar.gz", "donor": "SCD5", "condition": "SCD", "include": true}
+  ],
+  "qc": {
+    "discovery": {
+      "cell_calling": "source_umi_threshold_with_knee_diagnostic",
+      "minimum_umis": 3000,
+      "minimum_genes": 500,
+      "maximum_mitochondrial_fraction": 0.15,
+      "require_cd34_expression": true,
+      "scrublet_expected_doublet_rate": 0.06,
+      "scrublet_threshold_fallback": "robust_joint_umi_gene_outlier",
+      "published_retained_cells": 54689,
+      "published_count_tolerance_fraction": 0.25
+    },
+    "validation": {
+      "cell_calling": "source_filtered_matrix",
+      "minimum_umis": 1000,
+      "minimum_genes": 500,
+      "maximum_mitochondrial_fraction": 0.15,
+      "require_cd34_expression": false,
+      "scrublet_expected_doublet_rate": 0.06,
+      "scrublet_threshold_fallback": "robust_joint_umi_gene_outlier",
+      "published_retained_cells": 40862,
+      "published_count_tolerance_fraction": 0.25
+    }
+  },
+  "lineage_markers": {
+    "root": ["HLF", "MECOM", "MLLT3", "AVP", "CRHBP", "PROM1", "THY1", "GATA2", "HOXA9", "MEIS1"],
+    "myeloid": ["MPO", "ELANE", "AZU1", "CTSG", "LYZ", "CSF3R", "CEBPA", "CEBPE", "FCN1", "MNDA"],
+    "erythroid_megakaryocytic": ["GATA1", "KLF1", "AHSP", "ALAS2", "CA1", "GYPA", "PF4", "PPBP", "ITGA2B", "GP9"],
+    "lymphoid": ["DNTT", "IL7R", "LTB", "CD79A", "CD79B", "EBF1", "VPREB1", "VPREB3", "MME", "CD24"]
+  },
+  "model": {
+    "highly_variable_genes": 1000,
+    "pca_components": 25,
+    "topology_states": 30,
+    "topology_neighbors": 5,
+    "mapping_neighbors": 5,
+    "root_score_quantile": 0.65,
+    "root_maturity_quantile": 0.4,
+    "terminal_score_quantile": 0.75,
+    "minimum_state_donors": 2,
+    "minimum_root_cells_per_donor": 20,
+    "minimum_root_cells_rationale": "Caps worst-case binomial cell-sampling standard error near 0.112 before donor-level biological uncertainty.",
+    "discovery_leave_out_required": 5,
+    "validation_leave_out_required": 7,
+    "permutation_tail_maximum": 0.5
+  },
+  "claims": {
+    "permitted": "cross-sectional donor-level association in inferred lineage allocation",
+    "excluded": [
+      "observed fate",
+      "lineage tracing",
+      "causal disease effect",
+      "individual prediction",
+      "treatment response",
+      "clinical use"
+    ]
+  }
+}

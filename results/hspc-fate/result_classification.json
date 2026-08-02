@@ -1,0 +1,10 @@
+{
+  "classification": "insufficient_evidence",
+  "discovery_stable_lineages": [],
+  "failed_gates": [
+    "validation_root_cell_reliability"
+  ],
+  "interpretation": "cross-sectional donor-level association in inferred lineage allocation",
+  "replicated_lineages": [],
+  "validation_estimates_are_exploratory": true
+}

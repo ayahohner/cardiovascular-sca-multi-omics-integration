@@ -1,0 +1,7 @@
+cohort	lineage	direction	magnitude	uncertainty	stability	estimator_agreement	transport_limitations	replication_concordant
+discovery	myeloid	-1	-0.025043650009637042	donor bootstrap 95% [-0.0929323, 0.0640947]	False	True	plerixafor-mobilized HSPCs in a gene-therapy collection context	False
+validation	myeloid	0	-0.0336635695039505	donor bootstrap 95% [-0.101507, 0.0323258]	False	False	pediatric bone-marrow CD34-positive cells collected in a distinct study	False
+discovery	erythroid_megakaryocytic	1	0.02298823982356532	donor bootstrap 95% [-0.0763476, 0.0891556]	False	True	plerixafor-mobilized HSPCs in a gene-therapy collection context	False
+validation	erythroid_megakaryocytic	1	0.0580582256291623	donor bootstrap 95% [-0.0111981, 0.130312]	True	True	pediatric bone-marrow CD34-positive cells collected in a distinct study	False
+discovery	lymphoid	0	0.002055414980468795	donor bootstrap 95% [-0.0107631, 0.0103653]	False	False	plerixafor-mobilized HSPCs in a gene-therapy collection context	False
+validation	lymphoid	-1	-0.024394676088542955	donor bootstrap 95% [-0.0446185, -0.00550409]	True	True	pediatric bone-marrow CD34-positive cells collected in a distinct study	False

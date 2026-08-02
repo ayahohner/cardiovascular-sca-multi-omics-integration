@@ -16,6 +16,7 @@ dependencies = [
   "pandas>=2.3,<3",
   "scikit-learn>=1.7,<2",
   "scipy>=1.16,<2",
+  "scrublet>=0.2.3,<0.3",
 ]
 
 [project.optional-dependencies]
@@ -26,6 +27,7 @@ dev = [
 
 [project.scripts]
 cardio-sca-mvp = "cardio_sca_mvp.cli:main"
+hspc-fate-mvp = "hspc_fate_mvp.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -39,7 +41,7 @@ markers = [
 
 [tool.coverage.run]
 branch = true
-source = ["cardio_sca_mvp"]
+source = ["cardio_sca_mvp", "hspc_fate_mvp"]
 
 [tool.coverage.report]
 fail_under = 85

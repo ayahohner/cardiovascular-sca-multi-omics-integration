@@ -1,0 +1,66 @@
+{
+  "discovery": {
+    "marker_order": {
+      "erythroid_megakaryocytic": true,
+      "lymphoid": true,
+      "myeloid": true
+    },
+    "minimum_neighbor_sensitivity_correlation": 0.8,
+    "neighbor_sensitivity_correlation": 0.9724098333815104,
+    "passed": true,
+    "root_healthy_donors": 3,
+    "root_to_all_terminals": true,
+    "terminal_healthy_donors": {
+      "erythroid_megakaryocytic": 3,
+      "lymphoid": 3,
+      "myeloid": 3
+    }
+  },
+  "model_hashes": {
+    "discovery_after": {
+      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
+      "root_definition": "90e3635274472369530856bd19288c83dbf429ba0dd5300d67db8373b7ee7325",
+      "terminal_definitions": "68ecbfead1e43dda000122d1bd95e92ebe18c9737969f910c7ee054ac326fd1a",
+      "topology": "391d6bf954e5a01cb786538dfb48d4e9b150a501d7b4547a4805f807471f9e59",
+      "transformation": "eff624a1a55cfc243a107af453360909111f83b9e6fc115dfd4398c7e5fa3c88"
+    },
+    "discovery_before": {
+      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
+      "root_definition": "90e3635274472369530856bd19288c83dbf429ba0dd5300d67db8373b7ee7325",
+      "terminal_definitions": "68ecbfead1e43dda000122d1bd95e92ebe18c9737969f910c7ee054ac326fd1a",
+      "topology": "391d6bf954e5a01cb786538dfb48d4e9b150a501d7b4547a4805f807471f9e59",
+      "transformation": "eff624a1a55cfc243a107af453360909111f83b9e6fc115dfd4398c7e5fa3c88"
+    },
+    "validation_after": {
+      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
+      "root_definition": "1fd7327b379beebaeb3cac9a138edc103f1b153173ed28eb08fa317665e2869a",
+      "terminal_definitions": "c3713fbb8cc00b307108531d73d689eb79668da74c29dc716e14c245d751e0e3",
+      "topology": "cafd94ce98af56d4b9a34248689ff16eee07e725e3a1e5e5f9b612ec0469c582",
+      "transformation": "62246d9207fbeee28c5fd8152a1b811326059c235472f5e79e263a02773f9d86"
+    },
+    "validation_before": {
+      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
+      "root_definition": "1fd7327b379beebaeb3cac9a138edc103f1b153173ed28eb08fa317665e2869a",
+      "terminal_definitions": "c3713fbb8cc00b307108531d73d689eb79668da74c29dc716e14c245d751e0e3",
+      "topology": "cafd94ce98af56d4b9a34248689ff16eee07e725e3a1e5e5f9b612ec0469c582",
+      "transformation": "62246d9207fbeee28c5fd8152a1b811326059c235472f5e79e263a02773f9d86"
+    }
+  },
+  "validation": {
+    "marker_order": {
+      "erythroid_megakaryocytic": true,
+      "lymphoid": true,
+      "myeloid": true
+    },
+    "minimum_neighbor_sensitivity_correlation": 0.8,
+    "neighbor_sensitivity_correlation": 0.984055802990491,
+    "passed": true,
+    "root_healthy_donors": 4,
+    "root_to_all_terminals": true,
+    "terminal_healthy_donors": {
+      "erythroid_megakaryocytic": 2,
+      "lymphoid": 2,
+      "myeloid": 3
+    }
+  }
+}
