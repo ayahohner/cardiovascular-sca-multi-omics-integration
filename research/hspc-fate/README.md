@@ -31,6 +31,7 @@ Out of scope: the endothelial-transition MVP, joint atlases, RNA velocity withou
 
 ## Module artifacts
 
+- [`study-report.md`](study-report.md) is the complete professional report for the v1 study.
 - [`sources.json`](sources.json) records required, optional, and excluded source pointers.
 - [`analysis.json`](analysis.json) freezes required asset sizes and checksums, QC rules, lineage markers, model parameters, and claim limits.
 - [`operations.md`](operations.md) is the implementation-order and stop-gate contract.
