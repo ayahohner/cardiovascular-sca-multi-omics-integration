@@ -1,10 +1,15 @@
 {
   "classification": "insufficient_evidence",
   "discovery_stable_lineages": [],
+  "estimand": "healthy-reference lineage priming",
   "failed_gates": [
+    "doublet_call_rate_audit",
+    "model_robustness_execution",
+    "discovery_topology",
+    "validation_topology",
     "validation_root_cell_reliability"
   ],
-  "interpretation": "cross-sectional donor-level association in inferred lineage allocation",
+  "interpretation": "cross-sectional donor-level association in healthy-reference lineage priming",
   "replicated_lineages": [],
   "validation_estimates_are_exploratory": true
 }

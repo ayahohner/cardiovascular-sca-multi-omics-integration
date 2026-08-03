@@ -20,18 +20,21 @@ class DonorMatrix:
     counts: sparse.csr_matrix
     genes: np.ndarray
     barcodes: np.ndarray
+    gene_ids: np.ndarray | None = None
 
 
 def _decode_lines(handle: io.BufferedIOBase) -> np.ndarray:
     return np.asarray([line.decode("utf-8").rstrip("\r\n") for line in handle], dtype=str)
 
 
-def _feature_symbols(lines: np.ndarray) -> np.ndarray:
+def _features(lines: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    identifiers = []
     symbols = []
     for line in lines:
         fields = line.split("\t")
+        identifiers.append(fields[0])
         symbols.append(fields[1] if len(fields) > 1 else fields[0])
-    return np.asarray(symbols, dtype=str)
+    return np.asarray(identifiers, dtype=str), np.asarray(symbols, dtype=str)
 
 
 def read_discovery_zip(path: Path, donor: str, condition: str) -> DonorMatrix:
@@ -39,7 +42,7 @@ def read_discovery_zip(path: Path, donor: str, condition: str) -> DonorMatrix:
         prefix = f"{donor}/"
         with archive.open(prefix + "features.tsv.gz") as compressed:
             with gzip.GzipFile(fileobj=compressed) as handle:
-                genes = _feature_symbols(_decode_lines(handle))
+                gene_ids, genes = _features(_decode_lines(handle))
         with archive.open(prefix + "barcodes.tsv.gz") as compressed:
             with gzip.GzipFile(fileobj=compressed) as handle:
                 barcodes = _decode_lines(handle)
@@ -48,7 +51,7 @@ def read_discovery_zip(path: Path, donor: str, condition: str) -> DonorMatrix:
                 matrix = mmread(handle, spmatrix=True).tocsr()
     if matrix.shape != (len(genes), len(barcodes)):
         raise ValueError(f"10x dimensions disagree for {donor}: {matrix.shape}")
-    return DonorMatrix(donor, condition, "discovery", matrix.T.tocsr(), genes, barcodes)
+    return DonorMatrix(donor, condition, "discovery", matrix.T.tocsr(), genes, barcodes, gene_ids)
 
 
 def read_validation_sample(
@@ -66,9 +69,9 @@ def read_validation_sample(
         matrix_file = inner.extractfile("GRCh38/matrix.mtx")
         if feature_file is None or barcode_file is None or matrix_file is None:
             raise ValueError(f"incomplete validation archive: {archive_name}")
-        genes = _feature_symbols(_decode_lines(feature_file))
+        gene_ids, genes = _features(_decode_lines(feature_file))
         barcodes = _decode_lines(barcode_file)
         matrix = mmread(matrix_file, spmatrix=True).tocsr()
     if matrix.shape != (len(genes), len(barcodes)):
         raise ValueError(f"10x dimensions disagree for {donor}: {matrix.shape}")
-    return DonorMatrix(donor, condition, "validation", matrix.T.tocsr(), genes, barcodes)
+    return DonorMatrix(donor, condition, "validation", matrix.T.tocsr(), genes, barcodes, gene_ids)

@@ -44,9 +44,9 @@ def test_release_verifier_detects_file_tampering(tmp_path: Path) -> None:
 
 def test_release_verifier_detects_semantic_probability_corruption(tmp_path: Path) -> None:
     release = _release_copy(tmp_path)
-    path = release / "donor_fate_probabilities.tsv"
+    path = release / "donor_lineage_priming.tsv"
     frame = pd.read_csv(path, sep="\t")
-    frame.loc[0, "mean_fate_probability"] += 0.2
+    frame.loc[0, "mean_lineage_priming_probability"] += 0.2
     frame.to_csv(path, sep="\t", index=False)
 
     manifest_path = release / "release_manifest.json"
@@ -58,7 +58,7 @@ def test_release_verifier_detects_semantic_probability_corruption(tmp_path: Path
 
     verification = verify_release(tmp_path)
     assert verification["status"] == "failed"
-    assert "donor_fate_probabilities_not_normalized" in verification["problems"]
+    assert "donor_lineage_priming_not_normalized" in verification["problems"]
 
 
 @pytest.mark.data
@@ -75,17 +75,35 @@ def test_real_hspc_pipeline_is_reproducible_and_returns_a_valid_gated_result() -
 
     gates = pd.read_csv(RESULT / "gate_ledger.tsv", sep="\t")
     failed = gates.loc[gates["status"].eq("failed"), "gate"].tolist()
-    assert failed == ["validation_root_cell_reliability"]
+    assert failed == [
+        "doublet_call_rate_audit",
+        "model_robustness_execution",
+        "discovery_topology",
+        "validation_topology",
+        "validation_root_cell_reliability",
+    ]
     result = json.loads((RESULT / "result_classification.json").read_text())
     assert result["classification"] == "insufficient_evidence"
     assert result["discovery_stable_lineages"] == []
     assert result["validation_estimates_are_exploratory"] is True
 
     stability = pd.read_csv(RESULT / "stability_results.tsv", sep="\t")
+    assert not stability["model_robustness_passed"].any()
     for row in stability.itertuples():
         expected = 20 if row.cohort == "discovery" else 126
         assert row.exact_permutations == expected
-        assert len(json.loads(row.absorbing_markov_permutation_assignments_json)) == expected
-        assert len(json.loads(row.terminal_projection_permutation_assignments_json)) == expected
-        assert len(json.loads(row.absorbing_markov_leave_one_out_effects_json)) == row.leave_one_out_total
-        assert len(json.loads(row.terminal_projection_leave_one_out_effects_json)) == row.leave_one_out_total
+        assert len(json.loads(row.palantir_permutation_assignments_json)) == expected
+        assert len(json.loads(row.cellrank_cytotrace_permutation_assignments_json)) == expected
+        assert len(json.loads(row.palantir_leave_one_out_effects_json)) == row.leave_one_out_total
+        assert len(json.loads(row.cellrank_cytotrace_leave_one_out_effects_json)) == row.leave_one_out_total
+
+    robustness = pd.read_csv(RESULT / "model_robustness.tsv", sep="\t")
+    assert {
+        "baseline",
+        "donor_deletion_refit",
+        "donor_deletion_fixed_reference",
+        "hyperparameter_refit",
+    }.issubset(set(robustness["perturbation"]))
+    assert robustness.loc[
+        robustness["status"].eq("failed"), "detail"
+    ].str.len().gt(0).all()

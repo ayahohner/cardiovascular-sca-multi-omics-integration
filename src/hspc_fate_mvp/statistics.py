@@ -7,10 +7,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from .model import FateResult, LINEAGES
-
-
-ESTIMATORS = ("absorbing_markov", "terminal_projection")
+from .model import ESTIMATORS, FateResult, LINEAGES
 
 
 def aggregate_donor_fates(
@@ -20,14 +17,15 @@ def aggregate_donor_fates(
     donor_values = result.observations["donor"].to_numpy()
     condition_values = result.observations["condition"].to_numpy()
     cohort_values = result.observations["cohort"].to_numpy()
-    probability_sets = {
-        "absorbing_markov": result.primary_probabilities,
-        "terminal_projection": result.secondary_probabilities,
-    }
+    probability_sets = dict(
+        zip(ESTIMATORS, (result.primary_probabilities, result.secondary_probabilities), strict=True)
+    )
     for donor in pd.unique(donor_values):
         donor_mask = donor_values == donor
         root_mask = donor_mask & result.root_mask
         root_count = int(root_mask.sum())
+        if root_count == 0:
+            raise RuntimeError(f"donor {donor} has no reference-supported HSC/MPP-like cells")
         if enforce_minimum and root_count < minimum_root_cells:
             raise RuntimeError(
                 f"donor {donor} has {root_count} HSC/MPP-like cells; minimum is {minimum_root_cells}"
@@ -46,7 +44,7 @@ def aggregate_donor_fates(
                         "lineage": lineage,
                         "root_cell_count": root_count,
                         "root_cell_gate_passed": root_count >= minimum_root_cells,
-                        "mean_fate_probability": float(value),
+                        "mean_lineage_priming_probability": float(value),
                     }
                 )
     frame = pd.DataFrame.from_records(rows)
@@ -119,7 +117,7 @@ def analyze_stability(
     )
     estimator_results: dict[tuple[str, str], dict[str, Any]] = {}
     for (lineage, estimator), group in donor_fates.groupby(["lineage", "estimator"], sort=False):
-        values = group["mean_fate_probability"].to_numpy(dtype=float)
+        values = group["mean_lineage_priming_probability"].to_numpy(dtype=float)
         labels = group["condition"].to_numpy(dtype=str)
         donors = group["donor"].to_numpy(dtype=str)
         if set(labels) != {"healthy", "SCD"}:
@@ -167,8 +165,8 @@ def analyze_stability(
 
     rows = []
     for lineage in LINEAGES:
-        primary = estimator_results[(lineage, "absorbing_markov")]
-        secondary = estimator_results[(lineage, "terminal_projection")]
+        primary = estimator_results[(lineage, "palantir")]
+        secondary = estimator_results[(lineage, "cellrank_cytotrace")]
         concordant = primary["direction"] != 0 and primary["direction"] == secondary["direction"]
         lodo_pass = (
             primary["leave_one_out_same_direction"] >= required_lodo
@@ -182,38 +180,38 @@ def analyze_stability(
             {
                 "cohort": cohort,
                 "lineage": lineage,
-                "absorbing_markov_effect": primary["effect"],
-                "terminal_projection_effect": secondary["effect"],
+                "palantir_effect": primary["effect"],
+                "cellrank_cytotrace_effect": secondary["effect"],
                 "direction": primary["direction"] if concordant else 0,
                 "estimator_agreement": concordant,
-                "absorbing_markov_permutation_tail_fraction": primary["permutation_tail_fraction"],
-                "terminal_projection_permutation_tail_fraction": secondary[
+                "palantir_permutation_tail_fraction": primary["permutation_tail_fraction"],
+                "cellrank_cytotrace_permutation_tail_fraction": secondary[
                     "permutation_tail_fraction"
                 ],
-                "absorbing_markov_permutation_assignments_json": primary[
+                "palantir_permutation_assignments_json": primary[
                     "permutation_assignments_json"
                 ],
-                "terminal_projection_permutation_assignments_json": secondary[
+                "cellrank_cytotrace_permutation_assignments_json": secondary[
                     "permutation_assignments_json"
                 ],
                 "exact_permutations": primary["permutation_count"],
-                "absorbing_markov_leave_one_out_same_direction": primary[
+                "palantir_leave_one_out_same_direction": primary[
                     "leave_one_out_same_direction"
                 ],
-                "terminal_projection_leave_one_out_same_direction": secondary[
+                "cellrank_cytotrace_leave_one_out_same_direction": secondary[
                     "leave_one_out_same_direction"
                 ],
                 "leave_one_out_total": primary["leave_one_out_total"],
-                "absorbing_markov_leave_one_out_effects_json": primary[
+                "palantir_leave_one_out_effects_json": primary[
                     "leave_one_out_effects_json"
                 ],
-                "terminal_projection_leave_one_out_effects_json": secondary[
+                "cellrank_cytotrace_leave_one_out_effects_json": secondary[
                     "leave_one_out_effects_json"
                 ],
-                "absorbing_markov_bootstrap_95_low": primary["bootstrap_95_low"],
-                "absorbing_markov_bootstrap_95_high": primary["bootstrap_95_high"],
-                "terminal_projection_bootstrap_95_low": secondary["bootstrap_95_low"],
-                "terminal_projection_bootstrap_95_high": secondary["bootstrap_95_high"],
+                "palantir_bootstrap_95_low": primary["bootstrap_95_low"],
+                "palantir_bootstrap_95_high": primary["bootstrap_95_high"],
+                "cellrank_cytotrace_bootstrap_95_low": secondary["bootstrap_95_low"],
+                "cellrank_cytotrace_bootstrap_95_high": secondary["bootstrap_95_high"],
                 "leave_one_out_passed": lodo_pass,
                 "null_control_passed": null_pass,
                 "stable": bool(concordant and lodo_pass and null_pass),
@@ -244,10 +242,10 @@ def build_replication_table(
                     "cohort": cohort,
                     "lineage": lineage,
                     "direction": int(row["direction"]),
-                    "magnitude": float(row["absorbing_markov_effect"]),
+                    "magnitude": float(row["palantir_effect"]),
                     "uncertainty": (
-                        f"donor bootstrap 95% [{row['absorbing_markov_bootstrap_95_low']:.6g}, "
-                        f"{row['absorbing_markov_bootstrap_95_high']:.6g}]"
+                        f"donor bootstrap 95% [{row['palantir_bootstrap_95_low']:.6g}, "
+                        f"{row['palantir_bootstrap_95_high']:.6g}]"
                     ),
                     "stability": bool(row["stable"]),
                     "estimator_agreement": bool(row["estimator_agreement"]),

@@ -4,15 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cardiovascular-sca-multi-omics-integration"
-version = "0.1.0"
-description = "Open-data endothelial transition synthesis for cardiovascular SCA research"
+version = "0.2.0"
+description = "Modular open-data endothelial and HSPC research for cardiovascular SCA"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
   "anndata>=0.12,<0.13",
+  "cellrank>=2.3.2,<3",
   "h5py>=3.14,<4",
   "matplotlib>=3.10,<4",
   "numpy>=2.2,<3",
+  "palantir>=1.4.5,<2",
   "pandas>=2.3,<3",
   "scikit-learn>=1.7,<2",
   "scipy>=1.16,<2",

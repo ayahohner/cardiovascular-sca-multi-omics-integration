@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "random_seed": 1729,
   "required_assets": [
     {
@@ -90,11 +90,14 @@
   ],
   "qc": {
     "discovery": {
-      "cell_calling": "source_umi_threshold_with_knee_diagnostic",
+      "cell_calling": "source_umi_threshold_with_ambient_profile_audit",
       "minimum_umis": 3000,
       "minimum_genes": 500,
       "maximum_mitochondrial_fraction": 0.15,
-      "require_cd34_expression": true,
+      "hspc_identity_markers": ["CD34", "KIT", "ENG"],
+      "minimum_detected_hspc_markers": 1,
+      "ambient_maximum_umis": 100,
+      "ambient_top_gene_count": 100,
       "scrublet_expected_doublet_rate": 0.06,
       "scrublet_threshold_fallback": "robust_joint_umi_gene_outlier",
       "published_retained_cells": 54689,
@@ -105,37 +108,58 @@
       "minimum_umis": 1000,
       "minimum_genes": 500,
       "maximum_mitochondrial_fraction": 0.15,
-      "require_cd34_expression": false,
+      "hspc_identity_markers": ["CD34", "KIT", "ENG"],
+      "minimum_detected_hspc_markers": 0,
+      "ambient_maximum_umis": 100,
+      "ambient_top_gene_count": 100,
       "scrublet_expected_doublet_rate": 0.06,
       "scrublet_threshold_fallback": "robust_joint_umi_gene_outlier",
       "published_retained_cells": 40862,
       "published_count_tolerance_fraction": 0.25
     }
   },
-  "lineage_markers": {
-    "root": ["HLF", "MECOM", "MLLT3", "AVP", "CRHBP", "PROM1", "THY1", "GATA2", "HOXA9", "MEIS1"],
-    "myeloid": ["MPO", "ELANE", "AZU1", "CTSG", "LYZ", "CSF3R", "CEBPA", "CEBPE", "FCN1", "MNDA"],
-    "erythroid_megakaryocytic": ["GATA1", "KLF1", "AHSP", "ALAS2", "CA1", "GYPA", "PF4", "PPBP", "ITGA2B", "GP9"],
-    "lymphoid": ["DNTT", "IL7R", "LTB", "CD79A", "CD79B", "EBF1", "VPREB1", "VPREB3", "MME", "CD24"]
+  "marker_roles": {
+    "construction": {
+      "root": ["HLF", "MECOM", "MLLT3", "AVP", "CRHBP"],
+      "myeloid": ["MPO", "ELANE", "AZU1", "CTSG", "LYZ"],
+      "erythroid_megakaryocytic": ["GATA1", "KLF1", "AHSP", "ALAS2", "CA1"],
+      "lymphoid": ["DNTT", "IL7R", "LTB", "CD79A", "CD79B"]
+    },
+    "validation": {
+      "root": ["PROM1", "THY1", "GATA2", "HOXA9", "MEIS1"],
+      "myeloid": ["CSF3R", "CEBPA", "CEBPE", "FCN1", "MNDA"],
+      "erythroid_megakaryocytic": ["GYPA", "PF4", "PPBP", "ITGA2B", "GP9"],
+      "lymphoid": ["EBF1", "VPREB1", "VPREB3", "MME", "CD24"]
+    }
   },
   "model": {
     "highly_variable_genes": 1000,
     "pca_components": 25,
-    "topology_states": 30,
-    "topology_neighbors": 5,
-    "mapping_neighbors": 5,
+    "reference_cells_per_healthy_donor": 2000,
+    "trajectory_neighbors": 30,
+    "diffusion_components": 10,
+    "palantir_waypoints": 600,
+    "cellrank_terminal_cells_per_lineage": 30,
+    "cellrank_cytotrace_genes": 200,
+    "mapping_neighbors": 15,
+    "ood_quantile": 0.99,
     "root_score_quantile": 0.65,
-    "root_maturity_quantile": 0.4,
-    "terminal_score_quantile": 0.75,
+    "root_pseudotime_quantile": 0.4,
+    "terminal_score_quantile": 0.8,
     "minimum_state_donors": 2,
     "minimum_root_cells_per_donor": 20,
     "minimum_root_cells_rationale": "Caps worst-case binomial cell-sampling standard error near 0.112 before donor-level biological uncertainty.",
     "discovery_leave_out_required": 5,
     "validation_leave_out_required": 7,
-    "permutation_tail_maximum": 0.5
+    "permutation_tail_maximum": 0.25,
+    "doublet_audit_minimum_fraction": 0.001,
+    "sensitivity_specs": [
+      {"id": "lower_resolution", "random_seed_offset": 1, "highly_variable_genes": 750, "pca_components": 20, "trajectory_neighbors": 20, "reference_cells_per_healthy_donor": 1500},
+      {"id": "higher_resolution", "random_seed_offset": 2, "highly_variable_genes": 1500, "pca_components": 30, "trajectory_neighbors": 40, "reference_cells_per_healthy_donor": 2500}
+    ]
   },
   "claims": {
-    "permitted": "cross-sectional donor-level association in inferred lineage allocation",
+    "permitted": "cross-sectional donor-level association in healthy-reference lineage priming",
     "excluded": [
       "observed fate",
       "lineage tracing",

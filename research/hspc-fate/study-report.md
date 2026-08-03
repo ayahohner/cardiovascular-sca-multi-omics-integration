@@ -1,266 +1,132 @@
-# Open-Data HSPC Fate Study: v1 Report
+# Open-Data HSPC Lineage-Priming Study: v2 Report
 
 - **Project:** Cardiovascular SCA Multi-Omics Integration
-- **Module:** HSPC fate
-- **Release:** v1
-- **Analysis date:** 2 August 2026
-- **Released conclusion:** `insufficient_evidence`
+- **Module:** HSPC lineage priming
+- **Release:** v2
+- **Classification:** `insufficient_evidence`
 
 ## Executive summary
 
-This study asked whether open human single-cell data support a reproducible association between sickle cell disease and the inferred tendency of hematopoietic stem and multipotent progenitor cells (HSCs/MPPs) to allocate toward three broad blood-cell lineages: myeloid, erythroid–megakaryocytic, and lymphoid.
+This study asks whether open human single-cell data support a reproducible association between sickle cell disease and HSC/MPP lineage priming toward myeloid, erythroid–megakaryocytic, or lymphoid programs.
 
-The workflow was completed successfully. Seven public archives were downloaded and verified, 103,095 quality-controlled cells were analyzed across two independent cohorts, healthy-only cell-state models passed their topology controls, SCD cells were mapped without changing those models, and all donor-level estimates and uncertainty checks were released. The final scientific conclusion is nevertheless `insufficient_evidence`.
+Version 2 replaces the MVP's marker-derived centroid graph with a donor-balanced, cell-level healthy reference. Palantir is the primary trajectory estimator; CellRank 2 with a CytoTRACE kernel is a complementary potency-based sensitivity analysis. Construction markers are disjoint from markers used to evaluate the resulting root and endpoints. SCD cells map into the frozen healthy reference and may be rejected as out of distribution. Donor and bounded hyperparameter perturbations refit the model rather than only recomputing group means.
 
-That conclusion has two concrete reasons:
+The result remains `insufficient_evidence`. This is not a failure to obtain a preferred answer. It is the defensible outcome of stronger tests:
 
-1. None of the three discovery-cohort lineage contrasts passed every predeclared stability control.
-2. In the independent validation cohort, donor SCD5 retained only 4 HSC/MPP-like cells, below the frozen reliability minimum of 20. Its estimate is available for audit but is too fragile to support replication.
+1. the held-out erythroid–megakaryocytic endpoint fails in discovery;
+2. held-out erythroid, lymphoid, and root checks fail in validation;
+3. reasonable donor and resolution refits change effect directions or fail to produce a valid connected model;
+4. Palantir and CellRank disagree on two of three validation directions; and
+5. validation donor SCD5 retains one reference-supported HSC/MPP-like cell, below the frozen minimum of 20.
 
-This is a useful result, not a failed analysis. It establishes a reproducible open-data route to disease-conditioned HSPC allocation estimates, shows exactly where the present evidence stops, and identifies the smallest data acquisition needed next. It does **not** show observed cell fate, prove that sickle cell disease causes a transition, or support clinical prediction.
+## Research question and estimand
 
-## 1. Why this study was undertaken
+The precise question is:
 
-The broader repository studies open-data questions relevant to sickle cell anemia (SCA). Public cardiovascular tissue data were not sufficient for direct SCA fate estimation, so this module pursued a narrower question for which donor-resolved human SCD data actually exist.
+> Among transcriptomically HSC/MPP-like cells, is SCD associated with a reproducible donor-level difference in healthy-reference lineage priming?
 
-HSPCs are the cells that maintain blood production. An HSC/MPP can be described as being closer to several possible lineage programs, but a single cross-sectional RNA profile does not reveal which lineage that cell later entered. The term **fate probability** in this report therefore means a model-based allocation across reference endpoints. It is not an observed future outcome.
+For each donor, estimator, and lineage, the workflow averages lineage probabilities across that donor's reference-supported HSC/MPP-like cells. The condition effect is the mean SCD donor estimate minus the mean healthy donor estimate. Donors—not cells—are the biological replicates.
 
-This HSPC module is scientifically independent from the repository's endothelial-transition module. The two modules do not share data, state definitions, estimands, model fitting, or release gates. HSPCs are not cardiovascular tissue, and their results must not be presented as direct evidence about cardiovascular cell fate.
+“Lineage priming” means position in a computationally directed healthy expression reference. It is not an observed descendant, longitudinal transition, causal disease effect, or calibrated clinical probability.
 
-## 2. Research question and estimand
+## Data
 
-The precise question was:
+| Role | Accession | Comparison | Context |
+|---|---|---|---|
+| Discovery | [S-BSST1258](https://www.ebi.ac.uk/biostudies/studies/S-BSST1258) | 3 healthy and 3 SCD donors | Plerixafor-mobilized CD34-positive HSPCs in a gene-therapy collection context |
+| Validation | [GSE133181](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE133181) | 4 healthy and 5 SCD donors | Bone-marrow CD34-positive cells from a distinct pediatric study |
 
-> Among human HSC/MPP-like cells, is sickle cell disease associated with a reproducible difference in inferred allocation toward myeloid, erythroid–megakaryocytic, or lymphoid progenitor fates?
+All seven required archives are open, checksum-verified, and donor resolved. Raw archives and rebuildable matrices remain outside Git. The release records URLs, byte counts, checksums, retrieval times, terms, assay, tissue, processing state, donor context, and limitations.
 
-For each donor and lineage, the workflow calculated the mean inferred terminal-fate probability among that donor's HSC/MPP-like cells. The condition effect was then:
+The collection contexts differ and are partly confounded with cohort. Cross-cohort transport is therefore a test, not an assumption.
 
-`mean of SCD donor estimates − mean of healthy donor estimates`
+## Method
 
-Positive values mean higher inferred allocation in the SCD group; negative values mean lower inferred allocation. Donors—not cells—were the biological replicates. This prevents thousands of cells from being incorrectly treated as thousands of independent people.
+### Preprocessing
 
-The source datasets use the broader label SCD, or sickle cell disease. The repository name uses SCA, or sickle cell anemia. Condition labels in the analysis retain the sources' `SCD` terminology.
+Duplicate symbols are collapsed deterministically while retaining the first stable feature identifier. Discovery retains the source's 3,000-UMI floor, at least 500 genes, no more than 15% mitochondrial counts, and expression of at least one of `CD34`, `KIT`, or `ENG`. Validation retains its source-filtered-matrix rules. Scrublet is applied per donor, and observed call fractions and score distributions are released.
 
-## 3. Scope
+The discovery archives are unfiltered. Low-UMI barcodes define an ambient-expression profile used as a diagnostic, but exact EmptyDrops FDR is not reproduced because a maintained command-line-compatible implementation was not available in the current environment. This gap remains explicit.
 
-### Included
+The revised QC retained 64,751 discovery cells and 44,117 validation cells. These totals remain within the frozen source-comparison tolerance. Scrublet call fractions remain implausibly low for several discovery donors, so the doublet audit is a failed release gate.
 
-- Open human single-cell transcriptomic data with donor and condition labels.
-- A discovery comparison with 3 healthy and 3 SCD donors.
-- An independent validation comparison with 4 healthy and 5 SCD donors.
-- Healthy-only reference models for HSC/MPP and three terminal-lineage families.
-- Two independently structured allocation estimators.
-- Donor-level contrasts, exact label permutations, leave-one-donor-out analysis, donor bootstrap intervals, and explicit failure gates.
+### Healthy reference and biological anchors
 
-### Excluded
+Each healthy donor contributes 2,000 cells to the reference. PCA is fitted only on this balanced healthy subset using 1,000 variable genes and 25 components.
 
-- Observed or longitudinal cell fate.
-- Lineage tracing and RNA velocity without compatible molecular layers.
-- Causal claims about SCD.
-- Cardiovascular tissue inference.
-- Treatment response, gene-therapy efficacy, individual prediction, or clinical use.
-- Controlled-access datasets.
-- Pooling discovery and validation to manufacture a larger apparent sample.
-- A generalized multi-omics platform.
+Five construction markers define the root anchor and each terminal family. Five disjoint markers per program evaluate the recovered root and endpoints. Held-out failure is preserved; markers are not swapped after viewing results.
 
-## 4. Public data
+### Trajectory estimators
 
-All required data were accessible without an institutional agreement or research budget when admitted on 2 August 2026.
+Palantir uses a 30-neighbor diffusion graph, 10 diffusion components, and at most 600 waypoints. Three marker-anchored terminal seeds define the broad lineage families. Solver-level row-sum drift is permitted only below 2%, then probabilities are deterministically normalized and the observed deviation is released.
 
-| Role | Accession | Material | Included comparison | Access and use |
-|---|---|---|---|---|
-| Discovery | [S-BSST1258](https://www.ebi.ac.uk/biostudies/studies/S-BSST1258) | Donor-separated, unfiltered 10x scRNA-seq matrices from plerixafor-mobilized CD34-positive HSPCs | 3 healthy and 3 SCD donors | Open; BioStudies reports CC0 |
-| Validation | [GSE133181](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE133181) | Donor-resolved 10x scRNA-seq matrices from bone-marrow CD34-positive cells | 4 healthy and 5 SCD donors | Open under NCBI GEO repository terms |
+CellRank 2 constructs a separate CytoTRACE-directed transition kernel from the healthy reference and calculates probabilities toward donor-balanced terminal cell sets. Because both methods share input cells and biological endpoints, agreement is a sensitivity check rather than independent biological replication.
 
-Three thalassemia samples and one lineage-depleted healthy sample in GSE133181 were excluded before analysis because they do not answer the healthy-versus-SCD estimand.
+### Out-of-reference rejection
 
-The discovery dataset accompanies *Severe inflammation and lineage skewing is associated with poor engraftment of engineered hematopoietic stem cells in patients with sickle cell disease* ([Nature Communications, 2025](https://doi.org/10.1038/s41467-025-58321-4)). The validation dataset accompanies Hua et al., *Single-cell RNA-seq analysis of human bone marrow reveals molecular features of hematopoietic stem cells in sickle cell disease* ([Blood, 2020](https://doi.org/10.1182/blood.2019002301)).
+Each healthy donor is mapped against the other healthy donors. The 99th percentile of median 15-neighbor distances becomes the frozen OOD threshold. More than 98% of cells in every current donor are supported. Disease-query rejection is therefore implemented but is not the present cause of failure.
 
-Two additional open sources were retained as future pointers but were not used to produce v1 fate estimates:
+### Uncertainty and robustness
 
-- [GSE277682](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE277682), human bulk HSPC RNA-seq, can qualify program direction but cannot estimate cell-state allocation.
-- [GSE277681](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE277681), mouse Townes-model HSPC CITE-seq, can provide model support but is not human replication.
+The workflow records exact donor-label permutations, descriptive donor bootstraps, ordinary donor deletions, and estimator agreement. It also adds model-level perturbations:
 
-Longitudinal gene-therapy clonal-tracking data were excluded because the raw sequencing is controlled, the public derived repository has no explicit reuse license, and the study lacks the healthy comparator required by this estimand.
+- deleting a healthy donor refits gene selection, PCA, trajectory, endpoints, OOD calibration, and query mapping;
+- deleting an SCD donor preserves the healthy model and recomputes the contrast; and
+- lower- and higher-resolution specifications vary seed, healthy reference size, HVG count, PCA dimension, and graph neighborhood.
 
-### Provenance and integrity
+Failed refits are explicit data. They are not removed from the stability decision.
 
-The six discovery ZIP files and one validation TAR file total approximately 1.9 GiB. Every required archive has a frozen resolved URL, expected byte count, SHA-256 checksum, retrieval time, terms, donor label, assay, tissue, preprocessing state, and limitations. All seven passed byte-for-byte admission before analysis.
+## Results
 
-Raw archives and donor-level derived matrices remain outside Git. The compact release contains the information needed to identify and verify them. See the [source manifest](../../results/hspc-fate/source_manifest.json), [donor manifest](../../results/hspc-fate/donor_manifest.tsv), and [frozen analysis configuration](analysis.json).
+### Root and reference support
 
-## 5. Analysis method
+Every discovery donor passes the 20-root-cell floor. Eight of nine validation donors pass. SCD5 retains 157 of 160 cells inside the healthy OOD boundary but only one satisfies the root definition. Its failure is therefore biological/annotation support, not broad OOD rejection.
 
-### 5.1 Donor-resolved preprocessing
+### Baseline condition effects
 
-Each donor was processed separately. The discovery archives contain unfiltered feature–barcode matrices, so the workflow applied:
+Effects are SCD minus healthy probability points.
 
-- at least 3,000 total UMIs;
-- at least 500 detected genes;
-- no more than 15% mitochondrial counts;
-- detectable `CD34` expression; and
-- Scrublet doublet removal.
+| Cohort | Lineage | Palantir | CellRank-CytoTRACE | Direction agreement |
+|---|---|---:|---:|---|
+| Discovery | Myeloid | −0.0369 | −0.0001 | Yes |
+| Discovery | Erythroid–megakaryocytic | +0.0327 | +0.0013 | Yes |
+| Discovery | Lymphoid | +0.0042 | −0.0012 | No |
+| Validation | Myeloid | −0.2276 | −0.0025 | Yes |
+| Validation | Erythroid–megakaryocytic | +0.2708 | −0.0034 | No |
+| Validation | Lymphoid | −0.0432 | +0.0059 | No |
 
-A barcode-rank knee was recorded for each donor as a diagnostic. The validation matrices were already source-filtered, so they used a 1,000-UMI floor, at least 500 genes, no more than 15% mitochondrial counts, and Scrublet. CD34 expression was not reapplied as a hard validation filter.
+Baseline agreement is not sufficient. Across completed discovery refits, Palantir myeloid effects range from −0.0739 to +0.0824, and erythroid–megakaryocytic effects range from −0.0862 to +0.0784. CellRank effects are smaller but also cross zero. No lineage passes the full model-robustness contract.
 
-This is deliberately not described as an exact reproduction of either source paper. The discovery workflow uses the paper's published 3,000-UMI floor but does not rerun EmptyDrops at its reported false-discovery threshold. Scrublet replaces the paper's DoubletFinder implementation. These deviations are visible in the release rather than hidden.
+Three validation robustness specifications fail technically: two healthy-donor deletion refits and the lower-resolution specification. These failures are themselves evidence that the validation geometry is not reliably transportable under the current donor set.
 
-| Cohort | Donor | Condition | QC-retained cells | HSC/MPP-like cells | Root-cell gate |
-|---|---:|---|---:|---:|---|
-| Discovery | HD175 | Healthy | 8,244 | 2,824 | Pass |
-| Discovery | HD177 | Healthy | 9,755 | 2,379 | Pass |
-| Discovery | HD192 | Healthy | 10,845 | 3,526 | Pass |
-| Discovery | SCD2 | SCD | 8,038 | 3,561 | Pass |
-| Discovery | SCD3 | SCD | 11,047 | 4,816 | Pass |
-| Discovery | SCD4 | SCD | 11,042 | 2,970 | Pass |
-| Validation | BM1 | Healthy | 10,757 | 4,067 | Pass |
-| Validation | BM2 | Healthy | 11,166 | 3,310 | Pass |
-| Validation | BM3 | Healthy | 5,005 | 1,743 | Pass |
-| Validation | BM4 | Healthy | 5,094 | 644 | Pass |
-| Validation | SCD1 | SCD | 2,311 | 103 | Pass |
-| Validation | SCD2 | SCD | 2,282 | 356 | Pass |
-| Validation | SCD3 | SCD | 3,142 | 672 | Pass |
-| Validation | SCD4 | SCD | 4,207 | 279 | Pass |
-| Validation | SCD5 | SCD | 160 | 4 | **Fail** |
+### Gates and classification
 
-The discovery cohort retained 58,971 cells, 7.8% above the source publication's reported 54,689. Validation retained 44,124 cells, 8.0% above the publication's reported 40,862. Both differences are inside the frozen 25% source-reproduction tolerance. Differences are expected because the lean workflow is reproducible but not method-identical to the publications.
+The principal failed gates are:
 
-One Scrublet fit for validation donor BM3 emitted a numerical runtime warning while still returning finite scores and calls. The workflow captured the warning and recorded the threshold mode rather than suppressing it silently. The full donor preprocessing and release build completed successfully.
+- `doublet_call_rate_audit`;
+- `model_robustness_execution`;
+- `discovery_topology`;
+- `validation_topology`; and
+- `validation_root_cell_reliability`.
 
-### 5.2 Healthy-only state references
+The deterministic classification is therefore `insufficient_evidence`. The analysis does not support a replicated SCD-associated lineage-priming difference. It also does not prove that no biological difference exists.
 
-Discovery and validation were modeled independently. In each cohort, only healthy cells were allowed to define the reference geometry and endpoint semantics. SCD cells could be mapped into the reference but could not move the reference.
+## Ethics, fairness, and interpretation
 
-The model used:
+SCD genotype is not treated as a proxy for ancestry, race, geography, environment, treatment access, or socioeconomic context. Missing donor metadata remain `not_reported`. Differences between mobilized peripheral HSPCs and pediatric bone marrow are treated as transport limitations rather than automatically removed batch effects.
 
-- log-normalized expression;
-- 1,000 highly variable non-mitochondrial, non-ribosomal genes;
-- 25 principal components;
-- 30 healthy reference states; and
-- predeclared marker programs for an HSC/MPP-like root and myeloid, erythroid–megakaryocytic, and lymphoid endpoints.
+No individual prediction, treatment recommendation, gene-therapy efficacy claim, causal inference, or cardiovascular-tissue inference is permitted.
 
-Examples of root markers include `HLF`, `MECOM`, `MLLT3`, `AVP`, and `GATA2`. Examples of terminal markers include `MPO` and `ELANE` for myeloid, `GATA1` and `KLF1` for erythroid–megakaryocytic, and `DNTT`, `IL7R`, and `EBF1` for lymphoid. The complete frozen marker sets are in [analysis.json](analysis.json).
+## Step-7 evidence search
 
-Both healthy-only topologies passed their required controls:
+No third donor-resolved healthy-versus-SCD cohort was confirmed as openly downloadable without approval.
 
-| Control | Discovery | Validation |
-|---|---:|---:|
-| Healthy donors supporting the root | 3 | 4 |
-| Healthy donors supporting myeloid endpoint | 3 | 3 |
-| Healthy donors supporting erythroid–megakaryocytic endpoint | 3 | 2 |
-| Healthy donors supporting lymphoid endpoint | 3 | 2 |
-| Root reaches all three terminal families | Pass | Pass |
-| Terminal markers increase relative to root | Pass | Pass |
-| Neighbor-sensitivity correlation | 0.972 | 0.984 |
-| Required neighbor-sensitivity correlation | 0.800 | 0.800 |
+- `EGAD50000001522` contains 3 healthy and 4 SCA peripheral-blood HSPC donors and is the most aligned validation candidate, but EGA requires controlled access. It is excluded under the active open-only boundary.
+- `GSE285943` contains 148 healthy circulating-HSPC donors and is an attractive external healthy reference. It has no SCD comparator and cannot validate a condition effect.
 
-Hashes of the transformation, topology, root definition, terminal definitions, and model parameters were identical before and after SCD mapping in both cohorts. This verifies that disease-labeled cells did not refit the healthy model.
+No admitted source provides compatible SCD-specific time points, lineage tracing, metabolic labeling, or spliced/unspliced layers across both cohorts. Actual temporal direction therefore remains a data-acquisition problem.
 
-### 5.3 Two allocation estimators
-
-The same cells were evaluated in two different ways:
-
-1. **Absorbing Markov estimator.** A directed healthy state graph moves from earlier to later states and calculates each state's probability of eventually reaching the three terminal families.
-2. **Terminal projection estimator.** Cells are projected toward pseudotime-defined healthy terminal centroids without using the Markov graph.
-
-Both estimators were required to return three finite, nonnegative probabilities that sum to one. Agreement between their effect directions was used as a guard against a result being created by one modeling choice.
-
-### 5.4 Donor-level uncertainty and decision rules
-
-Cell probabilities were averaged within each donor before comparing conditions. The workflow then recorded:
-
-- all 20 possible label assignments in the 3-versus-3 discovery cohort;
-- all 126 possible label assignments in the 4-versus-5 validation cohort;
-- the effect after leaving out each donor in turn;
-- agreement between the two estimators; and
-- 2,000 donor-bootstrap replicates for a descriptive 95% interval.
-
-These controls assess stability; they do not create a large-sample significance claim. The exact-permutation tail fraction is especially coarse with so few donors. A discovery lineage was considered stable only when estimator direction agreed, at least 5 of 6 leave-one-donor-out effects retained the direction, and both frozen permutation screens passed.
-
-## 6. Results
-
-### 6.1 Discovery cohort
-
-Effects below are SCD minus healthy and are shown in probability points. For example, `−0.025` is approximately −2.5 percentage points of model allocation.
-
-| Lineage | Markov effect | Projection effect | Estimator direction | Permutation tail, M/P | Leave-one-out direction, M/P | Result |
-|---|---:|---:|---|---:|---:|---|
-| Myeloid | −0.0250 | −0.0047 | Agree: lower | 0.70 / 0.30 | 5/6 / 6/6 | Unstable |
-| Erythroid–megakaryocytic | +0.0230 | +0.0089 | Agree: higher | 0.70 / 0.50 | 5/6 / 6/6 | Unstable |
-| Lymphoid | +0.0021 | −0.0043 | Disagree | 0.90 / 0.50 | 4/6 / 5/6 | Unstable |
-
-All three Markov bootstrap intervals crossed zero:
-
-- myeloid: −0.0929 to +0.0641;
-- erythroid–megakaryocytic: −0.0763 to +0.0892; and
-- lymphoid: −0.0108 to +0.0104.
-
-The myeloid and erythroid–megakaryocytic estimators agreed on direction, but label permutations produced effects at least as strong too often for those contrasts to pass the frozen null screen. The lymphoid effect was small, changed direction between estimators, and depended more strongly on individual donors. Therefore, no discovery lineage was stable.
-
-### 6.2 Validation cohort
-
-The validation topology recovered the same root and terminal families, but donor SCD5 failed the minimum root-cell gate. The following numbers are retained for transparency and method checking only:
-
-| Lineage | Markov effect | Projection effect | Estimator direction | Internal stability calculation |
-|---|---:|---:|---|---|
-| Myeloid | −0.0337 | +0.0066 | Disagree | Unstable |
-| Erythroid–megakaryocytic | +0.0581 | +0.0116 | Agree | Passes internal calculation; exploratory only |
-| Lymphoid | −0.0244 | −0.0181 | Agree | Passes internal calculation; exploratory only |
-
-The erythroid–megakaryocytic and lymphoid validation patterns cannot be called replicated results. They were not preceded by stable discovery contrasts, and the validation donor-reliability gate failed. Removing SCD5 after seeing the result, pooling the cohorts, or lowering the 20-cell floor would change the frozen study contract and risk a biased conclusion.
-
-### 6.3 Final classification
-
-The workflow supports four possible conclusions: replicated difference, discovery-specific difference, no stable difference, or insufficient evidence. A failed required source, topology, annotation, or inference gate overrides a positive or null contrast classification.
-
-Nine of ten release gates passed. The failed gate was:
-
-`validation_root_cell_reliability: SCD5 retained 4 HSC/MPP-like cells; minimum = 20`
-
-The deterministic v1 conclusion is therefore:
-
-> **`insufficient_evidence`** — the available open data do not support a reliable replicated SCD-associated difference in inferred HSPC lineage allocation under the frozen v1 model and gates.
-
-This is not equivalent to proving that no biological difference exists. It means that this design and these public cohorts cannot distinguish a reproducible difference with adequate reliability.
-
-## 7. What the result does and does not mean
-
-### Supported interpretation
-
-The release describes cross-sectional donor-level associations in model-inferred lineage allocation among transcriptomically HSC/MPP-like cells. It also demonstrates that a complete, reproducible, zero-budget analysis is technically feasible with open data.
-
-### Unsupported interpretations
-
-The analysis does not establish:
-
-- that any individual cell entered a particular lineage;
-- that SCD caused a change in lineage transition probability;
-- that a lineage difference is replicated;
-- that mobilization, treatment, age, tissue source, or other cohort contexts are irrelevant;
-- that an estimate applies to an individual patient; or
-- that the model has clinical or treatment-selection value.
-
-## 8. Principal limitations
-
-1. **Small donor counts.** Six discovery and nine validation donors produce coarse exact-permutation resolution and wide donor-bootstrap intervals.
-2. **A failed validation donor gate.** Four root-like cells cannot provide a reliable donor mean for SCD5.
-3. **Different collection contexts.** Discovery uses plerixafor-mobilized HSPCs collected in a gene-therapy context; validation uses pediatric bone-marrow CD34-positive cells from a distinct study.
-4. **Cross-sectional transcriptomics.** The models infer proximity to endpoint programs; they do not observe a transition through time.
-5. **Method deviations.** The lean QC implementation is transparent and reproducible but not identical to either source publication.
-6. **Incomplete cohort metadata.** Ancestry, geography, environment, access to care, and self-identified race are unavailable at the required donor level and remain `not_reported`.
-7. **Broad endpoint families.** Three lineage families provide a tractable v1 question but do not represent every HSPC state or differentiation path.
-
-## 9. Ethics and fairness
-
-SCD genotype is not used as a proxy for ancestry, race, geography, environment, or access to care. The analysis does not infer missing demographic attributes, and it does not release donor-level sensitive metadata beyond the public sources. Differences between cohorts are treated as transport limitations, not as nuisance variation to be pooled away.
-
-Because collection and treatment contexts may correlate with condition, even a stable association would not establish a disease mechanism. Any future causal claim would require a design with stronger temporal, experimental, or matched-tissue evidence.
-
-## 10. Reproducibility and software validation
-
-The HSPC module is namespaced under `research/hspc-fate/`, `src/hspc_fate_mvp/`, `data/*/hspc-fate/`, and `results/hspc-fate/`. It does not depend on the endothelial module's scientific artifacts.
-
-Reproduction requires Python 3.12, standard open-source Python packages, internet access for the public archives, and approximately 1.9 GiB for HSPC source downloads:
+## Reproduction and artifacts
 
 ```bash
 make setup
@@ -271,47 +137,8 @@ make hspc-verify
 make test
 ```
 
-Validation at release included 34 tests with 85.48% combined branch coverage. The tests exercise archive parsing, source admission, QC exclusion accounting, doublet fallback behavior, graph absorption, donor-level aggregation, exact permutations, classification, command failure exits, release integrity, deliberate probability corruption, and two identical real-data runs. The repeated runs produced identical scientific artifact hashes.
-
-The [release manifest](../../results/hspc-fate/release_manifest.json) binds every compact artifact to its byte count and SHA-256 checksum. The independent release verifier passed with no problems.
-
-## 11. Recommended next step
-
-The smallest scientifically useful next increment is not a larger platform or a more elaborate model. It is one additional open, donor-resolved human SCD HSPC cohort that can satisfy the existing reliability contract.
-
-The sequence should be:
-
-1. Identify an independent open human HSPC dataset with healthy and SCD donors.
-2. Verify terms, donor labels, context, archive integrity, and reuse boundaries before analysis.
-3. Apply the frozen lineage vocabulary and estimate how many HSC/MPP-like cells remain per donor.
-4. Continue only if every comparator donor has at least 20 root-like cells.
-5. Re-run the same donor-level estimand and both allocation estimators without changing endpoints or pooling cohorts.
-6. Report concordance, disagreement, or another stopped result under the same claim boundary.
-
-Human bulk RNA-seq or mouse CITE-seq may be added later to qualify lineage, stemness, or senescence programs. Neither can replace independent human single-cell replication or rescue the failed validation gate.
-
-## 12. Artifact guide
-
-| Artifact | Purpose |
-|---|---|
-| [Frozen analysis configuration](analysis.json) | Required archives, QC thresholds, marker programs, model parameters, and claim limits |
-| [Formal v1 specification](v1-spec.md) | EARS requirements and acceptance criteria |
-| [Operation sequence](operations.md) | Discrete workflow, pass conditions, and failure responses |
-| [Source manifest](../../results/hspc-fate/source_manifest.json) | Resolved public sources, integrity, terms, and limitations |
-| [Donor manifest](../../results/hspc-fate/donor_manifest.tsv) | Donor, condition, tissue, inclusion, and missing-context fields |
-| [QC ledger](../../results/hspc-fate/qc_ledger.tsv) | Donor-level filtering and diagnostic details |
-| [State definitions](../../results/hspc-fate/state_definitions.json) | Root, terminal families, states, and directed graphs |
-| [Topology controls](../../results/hspc-fate/topology_controls.json) | Connectivity, donor support, sensitivity, and frozen model hashes |
-| [Donor fate probabilities](../../results/hspc-fate/donor_fate_probabilities.tsv) | One estimate per donor, estimator, and lineage |
-| [Stability results](../../results/hspc-fate/stability_results.tsv) | Effects, every exact permutation, leave-one-out effects, intervals, and decisions |
-| [Replication table](../../results/hspc-fate/replication_table.tsv) | Separate discovery and validation comparison |
-| [Gate ledger](../../results/hspc-fate/gate_ledger.tsv) | Passed and failed scientific controls |
-| [Classification](../../results/hspc-fate/result_classification.json) | Machine-readable final conclusion |
-| [Claim boundary](../../results/hspc-fate/claim_boundary.md) | Permitted and excluded interpretations |
-| [Compact result summary](../../results/hspc-fate/report.md) | Short release-facing result |
+The compact release includes source and donor manifests, QC and gate ledgers, trajectory definitions, OOD mapping summaries, donor lineage-priming estimates, full robustness results, stability and replication tables, claim boundaries, and a checksum manifest. See [`migration-v2.md`](migration-v2.md) for the detailed MVP-to-v2 change record.
 
 ## Conclusion
 
-The project achieved its lean engineering goal: a reproducible, provenance-bound workflow that converts open human SCD HSPC data into donor-level, uncertainty-qualified allocation estimates. It also achieved the more important scientific goal of refusing to overstate those estimates.
-
-The present evidence does not support a replicated SCD-associated HSPC fate-allocation difference. The discovery effects are unstable, and the independent validation comparison fails a donor-level reliability gate. The correct next move is to acquire one suitable open human cohort and rerun the frozen question—not to reinterpret exploratory validation patterns as proof.
+The modernized workflow is a substantive improvement even though it does not produce a positive finding. It breaks marker circularity, removes arbitrary centroid topology, balances healthy donors, rejects unsupported disease queries, and includes model refitting in uncertainty. Those stronger controls show that the current open cohorts cannot support a robust SCD-associated HSPC lineage-priming result. The next useful increment is stronger data, not further tuning of this answer.

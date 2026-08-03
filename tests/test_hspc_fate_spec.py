@@ -62,6 +62,7 @@ def test_source_ledger_keeps_required_open_inputs_and_exclusions_explicit():
     sources = {source["accession"]: source for source in ledger["sources"]}
 
     assert ledger["module"] == "hspc-fate"
+    assert ledger["schema_version"] == "2.0.0"
     assert ledger["policy"]["data_in_git"] is False
     assert len(sources) == len(ledger["sources"])
     assert len({source["id"] for source in ledger["sources"]}) == len(ledger["sources"])
@@ -75,5 +76,5 @@ def test_source_ledger_keeps_required_open_inputs_and_exclusions_explicit():
         assert source["asset_urls"]
         assert source["limitations"]
         if source["admission"] == "excluded":
-            assert source["eligible_for_v1"] is False
+            assert source["eligible_for_active_release"] is False
             assert source["exclusion_reason"]

@@ -1,13 +1,28 @@
 {
   "discovery": {
-    "marker_order": {
-      "erythroid_megakaryocytic": true,
+    "estimator_reference_correlations": {
+      "erythroid_megakaryocytic": 0.25092383798459456,
+      "lymphoid": 0.4369532181659504,
+      "myeloid": 0.06443148404962448
+    },
+    "held_out_marker_order": {
+      "erythroid_megakaryocytic": false,
       "lymphoid": true,
       "myeloid": true
     },
-    "minimum_neighbor_sensitivity_correlation": 0.8,
-    "neighbor_sensitivity_correlation": 0.9724098333815104,
-    "passed": true,
+    "held_out_root_marker_order": true,
+    "maximum_probability_normalization_deviation": {
+      "cellrank_cytotrace": 3.592119435569252e-06,
+      "palantir": 0.012714767747344813
+    },
+    "method": "palantir_primary_cellrank_cytotrace_sensitivity",
+    "ood_calibration_99th_percentile": 12.880508708953865,
+    "ood_calibration_median": 7.184841871261597,
+    "ood_distance_threshold": 12.880508708953865,
+    "palantir_unreachable_warning_count": 0,
+    "passed": false,
+    "reference_cells": 6000,
+    "reference_cells_per_healthy_donor": 2000,
     "root_healthy_donors": 3,
     "root_to_all_terminals": true,
     "terminal_healthy_donors": {
@@ -18,49 +33,64 @@
   },
   "model_hashes": {
     "discovery_after": {
-      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
-      "root_definition": "90e3635274472369530856bd19288c83dbf429ba0dd5300d67db8373b7ee7325",
-      "terminal_definitions": "68ecbfead1e43dda000122d1bd95e92ebe18c9737969f910c7ee054ac326fd1a",
-      "topology": "391d6bf954e5a01cb786538dfb48d4e9b150a501d7b4547a4805f807471f9e59",
-      "transformation": "eff624a1a55cfc243a107af453360909111f83b9e6fc115dfd4398c7e5fa3c88"
+      "model_parameters": "8e7d175dad9f689aa6b6f2184c6756fb0d61be04a321f148e9b13e2c48aaf247",
+      "root_definition": "8fd44ba00fa6f5008ad088f3cb823973347de703521506ec3eb582d5b0011a64",
+      "terminal_definitions": "5254f1ff36826bc8ce66f09bebe57340ec3c9567556e79c94f0a1d276eedb311",
+      "trajectory": "3d15352fa8a97fa297183e333ea9b43e8138d190865e2feefdc2d12dc3ffaf6c",
+      "transformation": "cdfe6389888be5bcb17cd2af2d585bdaf26ab046415a432126f99bc842cf79b3"
     },
     "discovery_before": {
-      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
-      "root_definition": "90e3635274472369530856bd19288c83dbf429ba0dd5300d67db8373b7ee7325",
-      "terminal_definitions": "68ecbfead1e43dda000122d1bd95e92ebe18c9737969f910c7ee054ac326fd1a",
-      "topology": "391d6bf954e5a01cb786538dfb48d4e9b150a501d7b4547a4805f807471f9e59",
-      "transformation": "eff624a1a55cfc243a107af453360909111f83b9e6fc115dfd4398c7e5fa3c88"
+      "model_parameters": "8e7d175dad9f689aa6b6f2184c6756fb0d61be04a321f148e9b13e2c48aaf247",
+      "root_definition": "8fd44ba00fa6f5008ad088f3cb823973347de703521506ec3eb582d5b0011a64",
+      "terminal_definitions": "5254f1ff36826bc8ce66f09bebe57340ec3c9567556e79c94f0a1d276eedb311",
+      "trajectory": "3d15352fa8a97fa297183e333ea9b43e8138d190865e2feefdc2d12dc3ffaf6c",
+      "transformation": "cdfe6389888be5bcb17cd2af2d585bdaf26ab046415a432126f99bc842cf79b3"
     },
     "validation_after": {
-      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
-      "root_definition": "1fd7327b379beebaeb3cac9a138edc103f1b153173ed28eb08fa317665e2869a",
-      "terminal_definitions": "c3713fbb8cc00b307108531d73d689eb79668da74c29dc716e14c245d751e0e3",
-      "topology": "cafd94ce98af56d4b9a34248689ff16eee07e725e3a1e5e5f9b612ec0469c582",
-      "transformation": "62246d9207fbeee28c5fd8152a1b811326059c235472f5e79e263a02773f9d86"
+      "model_parameters": "8e7d175dad9f689aa6b6f2184c6756fb0d61be04a321f148e9b13e2c48aaf247",
+      "root_definition": "685ff2013c768a3d370a8ff763e5a60763b8bd8a942ad944af911d348e9eec6d",
+      "terminal_definitions": "4ba49dfc885d6c9e2be0f231488f5bb4f5a70fbf6b784cb7212d12a9ea28f4e9",
+      "trajectory": "db3679d9767d6a5454d4051620582df18cbf1289a43a9f76a41d8d24e32c52e9",
+      "transformation": "ac5b0d20f8682c8bcf72ae1324f8b92ae47bb7035bf9db1c0d6ad1b8c85ac359"
     },
     "validation_before": {
-      "model_parameters": "77db2f4c0e2d464d8893019aa9aef6da8337c27ec769d5816941ad1104696fc6",
-      "root_definition": "1fd7327b379beebaeb3cac9a138edc103f1b153173ed28eb08fa317665e2869a",
-      "terminal_definitions": "c3713fbb8cc00b307108531d73d689eb79668da74c29dc716e14c245d751e0e3",
-      "topology": "cafd94ce98af56d4b9a34248689ff16eee07e725e3a1e5e5f9b612ec0469c582",
-      "transformation": "62246d9207fbeee28c5fd8152a1b811326059c235472f5e79e263a02773f9d86"
+      "model_parameters": "8e7d175dad9f689aa6b6f2184c6756fb0d61be04a321f148e9b13e2c48aaf247",
+      "root_definition": "685ff2013c768a3d370a8ff763e5a60763b8bd8a942ad944af911d348e9eec6d",
+      "terminal_definitions": "4ba49dfc885d6c9e2be0f231488f5bb4f5a70fbf6b784cb7212d12a9ea28f4e9",
+      "trajectory": "db3679d9767d6a5454d4051620582df18cbf1289a43a9f76a41d8d24e32c52e9",
+      "transformation": "ac5b0d20f8682c8bcf72ae1324f8b92ae47bb7035bf9db1c0d6ad1b8c85ac359"
     }
   },
   "validation": {
-    "marker_order": {
-      "erythroid_megakaryocytic": true,
-      "lymphoid": true,
+    "estimator_reference_correlations": {
+      "erythroid_megakaryocytic": 0.04774695939320024,
+      "lymphoid": 0.3905557918726631,
+      "myeloid": 0.18881464901244638
+    },
+    "held_out_marker_order": {
+      "erythroid_megakaryocytic": false,
+      "lymphoid": false,
       "myeloid": true
     },
-    "minimum_neighbor_sensitivity_correlation": 0.8,
-    "neighbor_sensitivity_correlation": 0.984055802990491,
-    "passed": true,
+    "held_out_root_marker_order": false,
+    "maximum_probability_normalization_deviation": {
+      "cellrank_cytotrace": 0.00012419904269966864,
+      "palantir": 0.01735950979021683
+    },
+    "method": "palantir_primary_cellrank_cytotrace_sensitivity",
+    "ood_calibration_99th_percentile": 11.997870960235598,
+    "ood_calibration_median": 7.375213146209717,
+    "ood_distance_threshold": 11.997870960235598,
+    "palantir_unreachable_warning_count": 0,
+    "passed": false,
+    "reference_cells": 8000,
+    "reference_cells_per_healthy_donor": 2000,
     "root_healthy_donors": 4,
     "root_to_all_terminals": true,
     "terminal_healthy_donors": {
-      "erythroid_megakaryocytic": 2,
-      "lymphoid": 2,
-      "myeloid": 3
+      "erythroid_megakaryocytic": 4,
+      "lymphoid": 4,
+      "myeloid": 4
     }
   }
 }

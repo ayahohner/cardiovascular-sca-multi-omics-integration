@@ -19,6 +19,73 @@ from .util import canonical_sha256, sha256_file, write_json
 Reader = Callable[[], DonorMatrix]
 
 
+def collapse_duplicate_gene_symbols(donor: DonorMatrix) -> tuple[DonorMatrix, int]:
+    """Collapse duplicate symbols before any scoring or dimensional reduction."""
+    keys = np.char.upper(donor.genes.astype(str))
+    target_by_key: dict[str, int] = {}
+    target_indices = np.empty(len(keys), dtype=int)
+    first_indices: list[int] = []
+    for source_index, key in enumerate(keys):
+        if key not in target_by_key:
+            target_by_key[key] = len(first_indices)
+            first_indices.append(source_index)
+        target_indices[source_index] = target_by_key[key]
+    duplicate_count = len(keys) - len(first_indices)
+    gene_ids = donor.gene_ids if donor.gene_ids is not None else donor.genes
+    if duplicate_count == 0:
+        return replace(donor, gene_ids=np.asarray(gene_ids, dtype=str)), 0
+    projection = sparse.csr_matrix(
+        (np.ones(len(keys), dtype=np.int8), (np.arange(len(keys)), target_indices)),
+        shape=(len(keys), len(first_indices)),
+    )
+    collapsed = (donor.counts @ projection).tocsr()
+    return (
+        replace(
+            donor,
+            counts=collapsed,
+            genes=donor.genes[first_indices],
+            gene_ids=np.asarray(gene_ids, dtype=str)[first_indices],
+        ),
+        duplicate_count,
+    )
+
+
+def _ambient_profile_audit(
+    counts: sparse.csr_matrix,
+    totals: np.ndarray,
+    admitted: np.ndarray,
+    maximum_ambient_umis: int,
+    top_gene_count: int,
+) -> dict[str, float | int]:
+    ambient_mask = (totals > 0) & (totals <= maximum_ambient_umis)
+    if not ambient_mask.any() or not admitted.any():
+        return {
+            "ambient_barcode_count": int(ambient_mask.sum()),
+            "ambient_top_gene_count": 0,
+            "ambient_fraction_median": float("nan"),
+            "ambient_fraction_95th_percentile": float("nan"),
+        }
+    ambient_profile = np.asarray(counts[ambient_mask].sum(axis=0)).ravel()
+    expressed = np.flatnonzero(ambient_profile > 0)
+    selected = expressed[
+        np.argsort(ambient_profile[expressed], kind="stable")[-min(top_gene_count, len(expressed)) :]
+    ]
+    admitted_totals = totals[admitted]
+    ambient_counts = np.asarray(counts[admitted][:, selected].sum(axis=1)).ravel()
+    fractions = np.divide(
+        ambient_counts,
+        admitted_totals,
+        out=np.zeros_like(ambient_counts, dtype=float),
+        where=admitted_totals > 0,
+    )
+    return {
+        "ambient_barcode_count": int(ambient_mask.sum()),
+        "ambient_top_gene_count": int(len(selected)),
+        "ambient_fraction_median": float(np.median(fractions)),
+        "ambient_fraction_95th_percentile": float(np.quantile(fractions, 0.95)),
+    }
+
+
 def _knee_count(total_counts: np.ndarray) -> int:
     nonzero = np.sort(total_counts[total_counts > 0])[::-1]
     if len(nonzero) < 3:
@@ -83,13 +150,15 @@ def qc_donor(
         [sparse.csr_matrix, float, int], tuple[np.ndarray, np.ndarray, float, str]
     ] = _scrublet_calls,
 ) -> tuple[DonorMatrix, list[dict[str, Any]], dict[str, Any]]:
+    donor, duplicate_gene_symbols = collapse_duplicate_gene_symbols(donor)
     counts = donor.counts.tocsr()
     total = np.asarray(counts.sum(axis=1)).ravel()
     detected = np.diff(counts.indptr)
     mitochondrial = np.char.startswith(np.char.upper(donor.genes.astype(str)), "MT-")
     mito_counts = np.asarray(counts[:, mitochondrial].sum(axis=1)).ravel()
     mito_fraction = np.divide(mito_counts, total, out=np.ones_like(total, dtype=float), where=total > 0)
-    cd34_index = np.flatnonzero(np.char.upper(donor.genes.astype(str)) == "CD34")
+    upper_genes = np.char.upper(donor.genes.astype(str))
+    cd34_index = np.flatnonzero(upper_genes == "CD34")
     cd34_counts = (
         np.asarray(counts[:, cd34_index].sum(axis=1)).ravel() if len(cd34_index) else np.zeros(len(total))
     )
@@ -101,7 +170,15 @@ def qc_donor(
         ("minimum_genes", detected >= int(rules["minimum_genes"])),
         ("maximum_mitochondrial_fraction", mito_fraction <= float(rules["maximum_mitochondrial_fraction"])),
     ]
-    if rules["require_cd34_expression"]:
+    identity_markers = [str(marker).upper() for marker in rules.get("hspc_identity_markers", [])]
+    identity_indices = np.flatnonzero(np.isin(upper_genes, identity_markers))
+    minimum_identity_markers = int(rules.get("minimum_detected_hspc_markers", 0))
+    if minimum_identity_markers:
+        if len(identity_indices) < minimum_identity_markers:
+            raise RuntimeError(f"HSPC identity markers are absent from {donor.donor}")
+        detected_identity = np.asarray((counts[:, identity_indices] > 0).sum(axis=1)).ravel()
+        masks.append(("hspc_identity_expression", detected_identity >= minimum_identity_markers))
+    elif rules.get("require_cd34_expression", False):
         if not len(cd34_index):
             raise RuntimeError(f"CD34 is absent from {donor.donor}")
         masks.append(("cd34_expression", cd34_counts > 0))
@@ -126,6 +203,7 @@ def qc_donor(
         "minimum_genes": f">={rules['minimum_genes']} genes",
         "maximum_mitochondrial_fraction": f"<={rules['maximum_mitochondrial_fraction']}",
         "cd34_expression": ">0 CD34 UMI",
+        "hspc_identity_expression": f">={minimum_identity_markers} of {len(identity_indices)} HSPC markers",
     }
     for control, mask in masks:
         before = int(cumulative.sum())
@@ -162,7 +240,15 @@ def qc_donor(
         }
     )
     retained = replace(donor, counts=selected[keep].tocsr(), barcodes=selected_barcodes[keep])
+    ambient = _ambient_profile_audit(
+        counts,
+        total,
+        cumulative,
+        int(rules.get("ambient_maximum_umis", 100)),
+        int(rules.get("ambient_top_gene_count", 100)),
+    )
     diagnostics = {
+        "duplicate_gene_symbols_collapsed": duplicate_gene_symbols,
         "raw_barcodes": int(counts.shape[0]),
         "raw_nonzero_barcodes": int((total > 0).sum()),
         "knee_umi_count": knee,
@@ -170,43 +256,57 @@ def qc_donor(
         "scrublet_threshold": scrublet_threshold,
         "scrublet_threshold_mode": scrublet_threshold_mode,
         "scrublet_score_median": float(np.median(scores)),
+        "scrublet_score_99th_percentile": float(np.quantile(scores, 0.99)),
         "scrublet_score_maximum": float(np.max(scores)),
-        "retained_cells": int(retained.counts.shape[0]),
+        "scrublet_expected_doublet_rate": float(rules["scrublet_expected_doublet_rate"]),
+        "scrublet_called_fraction": float(doublets.mean()),
+        "cd34_positive_fraction_before_doublet_filter": float((cd34_counts[cumulative] > 0).mean()),
+        "final_retained_cells": int(retained.counts.shape[0]),
+        **ambient,
     }
     return retained, ledger, diagnostics
 
 
-def _cache_paths(root: Path, cohort: str, donor: str) -> tuple[Path, Path, Path, Path]:
+def _cache_paths(root: Path, cohort: str, donor: str) -> tuple[Path, Path, Path, Path, Path]:
     base = root / "data/derived/hspc-fate/preprocessed" / cohort / donor
     return (
         base.with_suffix(".npz"),
         base.with_suffix(".genes.txt.gz"),
+        base.with_suffix(".gene_ids.txt.gz"),
         base.with_suffix(".barcodes.txt.gz"),
         base.with_suffix(".json"),
     )
 
 
 def _save_cache(root: Path, donor: DonorMatrix, metadata: dict[str, Any]) -> None:
-    matrix_path, genes_path, barcodes_path, metadata_path = _cache_paths(root, donor.cohort, donor.donor)
+    matrix_path, genes_path, gene_ids_path, barcodes_path, metadata_path = _cache_paths(
+        root, donor.cohort, donor.donor
+    )
     matrix_path.parent.mkdir(parents=True, exist_ok=True)
     sparse.save_npz(matrix_path, donor.counts, compressed=True)
     with gzip.open(genes_path, "wt", encoding="utf-8") as handle:
         handle.write("\n".join(donor.genes) + "\n")
+    with gzip.open(gene_ids_path, "wt", encoding="utf-8") as handle:
+        handle.write("\n".join(donor.gene_ids if donor.gene_ids is not None else donor.genes) + "\n")
     with gzip.open(barcodes_path, "wt", encoding="utf-8") as handle:
         handle.write("\n".join(donor.barcodes) + "\n")
     write_json(metadata_path, metadata)
 
 
 def _load_cache(root: Path, cohort: str, donor: str, condition: str) -> tuple[DonorMatrix, dict[str, Any]]:
-    matrix_path, genes_path, barcodes_path, metadata_path = _cache_paths(root, cohort, donor)
+    matrix_path, genes_path, gene_ids_path, barcodes_path, metadata_path = _cache_paths(
+        root, cohort, donor
+    )
     counts = sparse.load_npz(matrix_path).tocsr()
     with gzip.open(genes_path, "rt", encoding="utf-8") as handle:
         genes = np.asarray([line.rstrip("\n") for line in handle], dtype=str)
+    with gzip.open(gene_ids_path, "rt", encoding="utf-8") as handle:
+        gene_ids = np.asarray([line.rstrip("\n") for line in handle], dtype=str)
     with gzip.open(barcodes_path, "rt", encoding="utf-8") as handle:
         barcodes = np.asarray([line.rstrip("\n") for line in handle], dtype=str)
     with metadata_path.open(encoding="utf-8") as handle:
         metadata = json.load(handle)
-    return DonorMatrix(donor, condition, cohort, counts, genes, barcodes), metadata
+    return DonorMatrix(donor, condition, cohort, counts, genes, barcodes, gene_ids), metadata
 
 
 def prepare_cohort(

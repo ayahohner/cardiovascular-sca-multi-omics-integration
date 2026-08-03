@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "module": "hspc-fate",
-  "verified_on": "2026-08-02",
+  "verified_on": "2026-08-03",
   "policy": {
     "required_access": "open without institutional approval",
     "biological_unit": "donor",
@@ -15,7 +15,7 @@
       "id": "s-bsst1258-hspc-scrna",
       "accession": "S-BSST1258",
       "admission": "required_discovery",
-      "eligible_for_v1": true,
+      "eligible_for_active_release": true,
       "access": "open",
       "organism": "Homo sapiens",
       "assay": "10x single-cell RNA-seq of mobilized CD34-positive HSPCs",
@@ -50,7 +50,7 @@
       "id": "gse133181-bm-cd34-scrna",
       "accession": "GSE133181",
       "admission": "required_validation",
-      "eligible_for_v1": true,
+      "eligible_for_active_release": true,
       "access": "open",
       "organism": "Homo sapiens",
       "assay": "10x single-cell RNA-seq of bone-marrow CD34-positive cells",
@@ -78,7 +78,7 @@
       "id": "gse277682-human-hspc-bulk",
       "accession": "GSE277682",
       "admission": "optional_orthogonal_validation",
-      "eligible_for_v1": true,
+      "eligible_for_active_release": true,
       "access": "open",
       "organism": "Homo sapiens",
       "assay": "bulk RNA-seq of sorted CD45-positive lineage-negative CD34-positive CD38-negative bone-marrow HSPCs",
@@ -106,7 +106,7 @@
       "id": "gse277681-townes-hspc-citeseq",
       "accession": "GSE277681",
       "admission": "optional_model_validation",
-      "eligible_for_v1": true,
+      "eligible_for_active_release": true,
       "access": "open",
       "organism": "Mus musculus",
       "assay": "CITE-seq of c-Kit-enriched Townes-model bone-marrow HSPCs",
@@ -134,7 +134,7 @@
       "id": "sickle-gene-therapy-clonal-tracking",
       "accession": "EGAD00001010913 and author-derived repository",
       "admission": "excluded",
-      "eligible_for_v1": false,
+      "eligible_for_active_release": false,
       "access": "mixed controlled and publicly viewable",
       "organism": "Homo sapiens",
       "assay": "longitudinal somatic-mutation clonal tracking after gene therapy",
@@ -158,6 +158,61 @@
         "The public derived repository has no explicit reuse license."
       ],
       "exclusion_reason": "Not an open, licensed, healthy-versus-SCA input for v1; retain only as a future methodological pointer."
+    },
+    {
+      "id": "gse285943-circulating-hspc-reference",
+      "accession": "GSE285943",
+      "admission": "future_external_reference",
+      "eligible_for_active_release": false,
+      "access": "open",
+      "organism": "Homo sapiens",
+      "assay": "single-cell RNA profiling of circulating CD34-positive HSPCs",
+      "comparison": "148 healthy age- and sex-diverse individuals; no SCD comparator",
+      "biological_unit": "donor",
+      "landing_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE285943",
+      "asset_urls": [
+        "https://cellxgene.cziscience.com/collections/5542eeb0-96ef-4ab9-95ea-eb6abc178461"
+      ],
+      "format": "GEO and CELLxGENE single-cell release; exact assets require admission verification",
+      "license": "Public repository release; asset-specific reuse terms require verification before admission",
+      "citation": "A reference model of circulating hematopoietic stem cells across the lifespan with applications to diagnostics. Nature Medicine (2025).",
+      "verified": [
+        "The primary article reports 148 healthy donors and public GEO and CELLxGENE deposits.",
+        "This is the strongest identified open donor-diverse healthy reference candidate."
+      ],
+      "limitations": [
+        "It cannot validate an SCD-versus-healthy effect because it contains no SCD comparator.",
+        "Circulating HSPCs are not interchangeable with bone-marrow or mobilized collections.",
+        "Exact asset provenance, terms, and interoperability remain to be admitted."
+      ]
+    },
+    {
+      "id": "egad50000001522-sca-pb-hspc-scrna",
+      "accession": "EGAD50000001522",
+      "admission": "excluded",
+      "eligible_for_active_release": false,
+      "access": "controlled",
+      "organism": "Homo sapiens",
+      "assay": "single-cell RNA-seq of peripheral-blood CD34-positive HSPCs",
+      "comparison": "3 healthy donors and 4 SCA donors",
+      "biological_unit": "donor",
+      "landing_url": "https://ega-archive.org/datasets/EGAD50000001522",
+      "asset_urls": [
+        "https://ega-archive.org/datasets/EGAD50000001522"
+      ],
+      "format": "controlled EGA sequencing dataset",
+      "license": "Data Access Committee approval required",
+      "citation": "Single-cell RNA sequencing of peripheral blood HSPCs from patients with sickle cell anemia and healthy donors. EGA study EGAS50000001046.",
+      "verified": [
+        "EGA reports seven donor samples: 3 healthy and 4 SCA.",
+        "The accession requires a data-access request."
+      ],
+      "limitations": [
+        "Controlled access violates the active open-only boundary.",
+        "No reusable open processed matrix was confirmed during the 2026-08-03 search.",
+        "It is the most biologically aligned third-cohort candidate if access policy changes."
+      ],
+      "exclusion_reason": "Controlled access; retain as the step-7 validation candidate and recheck periodically for an open processed release."
     }
   ]
 }

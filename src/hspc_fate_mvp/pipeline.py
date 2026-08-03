@@ -7,8 +7,9 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from .model import LINEAGES, combine_donors, fit_healthy_model
+from .model import ESTIMATORS, LINEAGES, combine_donors, fit_healthy_model
 from .preprocess import prepare_cohort
+from .robustness import attach_robustness, run_model_robustness
 from .sources import (
     assert_all_admitted,
     build_donor_manifest,
@@ -39,7 +40,9 @@ REQUIRED_ARTIFACTS = (
     "qc_ledger.tsv",
     "state_definitions.json",
     "topology_controls.json",
-    "donor_fate_probabilities.tsv",
+    "donor_lineage_priming.tsv",
+    "reference_mapping.tsv",
+    "model_robustness.tsv",
     "stability_results.tsv",
     "replication_table.tsv",
     "gate_ledger.tsv",
@@ -82,7 +85,7 @@ def _claim_boundary(classification: str) -> str:
 
 The released classification is `{classification}`.
 
-Permitted interpretation: cross-sectional donor-level association in inferred lineage allocation among transcriptomically HSC/MPP-like cells.
+Permitted interpretation: cross-sectional donor-level association in healthy-reference lineage priming among transcriptomically HSC/MPP-like cells that pass reference-support checks.
 
 Excluded interpretations: observed fate, lineage tracing, a causal SCA effect, individual prediction, treatment response, gene-therapy efficacy, or clinical use. SCD genotype is not a proxy for ancestry, geography, environment, access to care, or self-identified race. Unavailable cohort attributes remain marked `not_reported`.
 """
@@ -97,8 +100,9 @@ def _report(
     discovery_lines = []
     for row in discovery_stability.itertuples():
         discovery_lines.append(
-            f"- {row.lineage}: absorbing-Markov effect {row.absorbing_markov_effect:.6f}; "
-            f"projection effect {row.terminal_projection_effect:.6f}; stable={str(row.stable).lower()}."
+            f"- {row.lineage}: Palantir effect {row.palantir_effect:.6f}; "
+            f"CellRank-CytoTRACE effect {row.cellrank_cytotrace_effect:.6f}; "
+            f"stable={str(row.stable).lower()}."
         )
     low_root = validation_fates.loc[~validation_fates["root_cell_gate_passed"]]
     low_root_summary = ", ".join(
@@ -106,23 +110,23 @@ def _report(
         for row in low_root.drop_duplicates("donor").itertuples()
     )
     failures = "\n".join(f"- {reason}" for reason in failure_reasons) or "- None."
-    return f"""# HSPC Fate v1 Result
+    return f"""# HSPC Lineage-Priming v2 Result
 
 ## Classification
 
 `{classification}`
 
-This is a cross-sectional donor-level analysis of inferred lineage allocation. It does not observe cell fate and does not establish that SCA causes an allocation difference.
+This is a cross-sectional donor-level analysis of healthy-reference lineage priming. It does not observe cell fate and does not establish that SCA causes a transition change.
 
-Discovery uses six open donor-separated unfiltered 10x matrices. Cell admission applies the source paper's fixed 3,000-UMI floor with a recorded barcode-rank knee diagnostic; it does not reproduce EmptyDrops FDR calculations. Scrublet replaces the paper's DoubletFinder implementation. The validation cohort uses its own frozen source-aware thresholds. These are explicit lean-MVP method deviations, not claims of an exact paper reproduction.
+Discovery uses six open donor-separated unfiltered 10x matrices. Cell admission retains the source paper's fixed 3,000-UMI floor, adds an ambient-profile audit, uses a multi-gene HSPC identity rule instead of CD34 alone, collapses duplicate symbols, and records Scrublet score and call-rate diagnostics. Exact EmptyDrops FDR reproduction remains unavailable without R/DropletUtils.
 
-The primary estimator is absorption through a healthy-only directed state graph. The independent estimator projects cells to pseudotime-defined healthy terminal centroids without using the graph. Donor means are the biological replicates.
+The primary estimator is Palantir on a donor-balanced healthy cell reference. CellRank 2 with a CytoTRACE kernel is a complementary potency-based sensitivity estimator. Construction and held-out validation markers are disjoint. SCD cells cannot refit the reference and are rejected when their healthy-reference distance exceeds a leave-one-healthy-donor-out threshold. Donor means are the biological replicates.
 
 ## Discovery
 
 {chr(10).join(discovery_lines)}
 
-No discovery lineage passed all frozen method-concordance, leave-one-donor-out, and exact-permutation null controls. `stability_results.tsv` preserves every donor-label assignment and every donor-specific leave-one-out effect for audit.
+`stability_results.tsv` preserves every donor-label assignment and donor-specific deletion effect. `model_robustness.tsv` adds healthy-reference refits and bounded hyperparameter refits; a positive result must survive both.
 
 ## Validation gate
 
@@ -134,7 +138,7 @@ Validation independently recovered the root and three terminal families. The don
 
 ## Follow-up
 
-Acquire an open independent human SCA HSPC cohort in which every comparator donor retains at least 20 transcriptomically HSC/MPP-like cells under the frozen marker semantics. Re-run the same donor-level estimand without pooling cohorts or changing endpoints. Optional bulk-human or mouse evidence may qualify programs but cannot rescue this human replication gate.
+Verify a third donor-resolved open human SCD HSPC cohort or obtain compatible directional molecular layers. Re-run the frozen lineage-priming estimand without pooling cohorts or changing endpoints. Time-resolved, lineage-tracing, or compatible spliced/unspliced data are required before upgrading the claim toward temporal fate direction.
 """
 
 
@@ -163,12 +167,10 @@ def run_pipeline(root: Path, force_preprocess: bool = False) -> dict[str, Any]:
         ignore_index=True,
     )
 
-    discovery_model, discovery_result = fit_healthy_model(
-        combine_donors(discovery_donors), config
-    )
-    validation_model, validation_result = fit_healthy_model(
-        combine_donors(validation_donors), config
-    )
+    discovery_cohort = combine_donors(discovery_donors)
+    validation_cohort = combine_donors(validation_donors)
+    discovery_model, discovery_result = fit_healthy_model(discovery_cohort, config)
+    validation_model, validation_result = fit_healthy_model(validation_cohort, config)
     minimum_root = int(config["model"]["minimum_root_cells_per_donor"])
     discovery_fates = aggregate_donor_fates(
         discovery_result, minimum_root, enforce_minimum=False
@@ -177,19 +179,79 @@ def run_pipeline(root: Path, force_preprocess: bool = False) -> dict[str, Any]:
         validation_result, minimum_root, enforce_minimum=False
     )
     donor_fates = pd.concat([discovery_fates, validation_fates], ignore_index=True)
-    discovery_stability = analyze_stability(discovery_fates, config, "discovery")
-    validation_stability = analyze_stability(validation_fates, config, "validation")
+    discovery_robustness = run_model_robustness(
+        discovery_cohort, discovery_result, config, "discovery"
+    )
+    validation_robustness = run_model_robustness(
+        validation_cohort, validation_result, config, "validation"
+    )
+    robustness = pd.concat(
+        [discovery_robustness, validation_robustness], ignore_index=True
+    )
+    discovery_stability = attach_robustness(
+        analyze_stability(discovery_fates, config, "discovery"),
+        discovery_robustness,
+        config,
+        "discovery",
+    )
+    validation_stability = attach_robustness(
+        analyze_stability(validation_fates, config, "validation"),
+        validation_robustness,
+        config,
+        "validation",
+    )
     stability = pd.concat([discovery_stability, validation_stability], ignore_index=True)
     replication = build_replication_table(discovery_stability, validation_stability)
+    reference_mapping = pd.concat(
+        [
+            result.observations.assign(root_cell=result.root_mask)
+            .groupby(["cohort", "donor", "condition"], as_index=False)
+            .agg(
+                cells=("cell_index", "size"),
+                reference_supported_cells=("reference_supported", "sum"),
+                reference_supported_fraction=("reference_supported", "mean"),
+                root_cells=("root_cell", "sum"),
+                median_ood_distance=("ood_distance", "median"),
+            )
+            for result in (discovery_result, validation_result)
+        ],
+        ignore_index=True,
+    )
 
     discovery_counts = {donor.donor: donor.counts.shape[0] for donor in discovery_donors}
     validation_counts = {donor.donor: donor.counts.shape[0] for donor in validation_donors}
     gates = [
         _gate(
+            "gene_identity_normalization",
+            True,
+            f"collapsed duplicate symbols: discovery={sum(item['duplicate_gene_symbols_collapsed'] for item in discovery_diagnostics)}; validation={sum(item['duplicate_gene_symbols_collapsed'] for item in validation_diagnostics)}",
+            "stop modeling",
+        ),
+        _gate(
+            "doublet_call_rate_audit",
+            all(
+                item["scrublet_called_fraction"]
+                >= float(config["model"]["doublet_audit_minimum_fraction"])
+                for item in discovery_diagnostics + validation_diagnostics
+            ),
+            "; ".join(
+                f"{cohort}:{item['scrublet_called_fraction']:.4%}"
+                for cohort, diagnostics in (("discovery", discovery_diagnostics), ("validation", validation_diagnostics))
+                for item in diagnostics
+            ),
+            "retain estimates for audit and classify as insufficient_evidence",
+        ),
+        _gate(
             "required_source_admission",
             preflight["status"].eq("admitted").all(),
             "7 of 7 required archives match frozen byte counts and SHA-256 checksums",
             "classify as insufficient_evidence",
+        ),
+        _gate(
+            "model_robustness_execution",
+            robustness["status"].eq("completed").all(),
+            f"completed={int(robustness['status'].eq('completed').sum())}; failed={int(robustness['status'].eq('failed').sum())}",
+            "retain baseline estimates for audit and classify as insufficient_evidence",
         ),
         _gate(
             "donor_manifest_cardinality",
@@ -293,7 +355,9 @@ def run_pipeline(root: Path, force_preprocess: bool = False) -> dict[str, Any]:
             },
         },
     )
-    write_tsv(release / "donor_fate_probabilities.tsv", donor_fates)
+    write_tsv(release / "donor_lineage_priming.tsv", donor_fates)
+    write_tsv(release / "reference_mapping.tsv", reference_mapping)
+    write_tsv(release / "model_robustness.tsv", robustness)
     write_tsv(release / "stability_results.tsv", stability)
     write_tsv(release / "replication_table.tsv", replication)
     write_tsv(release / "gate_ledger.tsv", gate_ledger)
@@ -306,6 +370,7 @@ def run_pipeline(root: Path, force_preprocess: bool = False) -> dict[str, Any]:
         ].tolist(),
         "validation_estimates_are_exploratory": bool(failed_gates),
         "interpretation": config["claims"]["permitted"],
+        "estimand": "healthy-reference lineage priming",
     }
     write_json(release / "result_classification.json", result_record)
     (release / "claim_boundary.md").write_text(
@@ -323,7 +388,7 @@ def run_pipeline(root: Path, force_preprocess: bool = False) -> dict[str, Any]:
             {"path": name, "bytes": path.stat().st_size, "sha256": sha256_file(path)}
         )
     manifest = {
-        "release_id": "hspc-fate-v1",
+        "release_id": "hspc-fate-v2",
         "classification": classification,
         "config_sha256": canonical_sha256(config),
         "artifacts": artifact_records,
@@ -354,21 +419,21 @@ def verify_release(root: Path) -> dict[str, Any]:
         elif sha256_file(path) != artifact["sha256"]:
             problems.append(f"checksum:{artifact['path']}")
 
-    donor_fates = pd.read_csv(release / "donor_fate_probabilities.tsv", sep="\t")
+    donor_fates = pd.read_csv(release / "donor_lineage_priming.tsv", sep="\t")
     key = ["cohort", "donor", "estimator", "lineage"]
     if donor_fates.duplicated(key).any():
         problems.append("duplicate_donor_fate_row")
     sums = donor_fates.groupby(["cohort", "donor", "estimator"])[
-        "mean_fate_probability"
+        "mean_lineage_priming_probability"
     ].sum()
     if not np.allclose(sums.to_numpy(), 1.0, atol=1e-6):
-        problems.append("donor_fate_probabilities_not_normalized")
+        problems.append("donor_lineage_priming_not_normalized")
     if set(donor_fates["lineage"]) != set(LINEAGES):
         problems.append("lineage_set_mismatch")
 
     stability = pd.read_csv(release / "stability_results.tsv", sep="\t")
     for row in stability.itertuples():
-        for estimator in ("absorbing_markov", "terminal_projection"):
+        for estimator in ESTIMATORS:
             permutations = json.loads(
                 getattr(row, f"{estimator}_permutation_assignments_json")
             )
@@ -392,7 +457,7 @@ def verify_release(root: Path) -> dict[str, Any]:
     if any(asset["status"] != "admitted" for asset in source_manifest["assets"]):
         problems.append("unadmitted_source_in_release")
     claim_boundary = (release / "claim_boundary.md").read_text()
-    if "cross-sectional donor-level association in inferred lineage allocation" not in claim_boundary:
+    if "cross-sectional donor-level association in healthy-reference lineage priming" not in claim_boundary:
         problems.append("missing_permitted_interpretation")
     if "Excluded interpretations:" not in claim_boundary:
         problems.append("missing_claim_exclusions")

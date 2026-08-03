@@ -28,7 +28,7 @@ ASSET_FIELDS = {
 def load_analysis_config(path: Path) -> dict[str, Any]:
     with path.open(encoding="utf-8") as handle:
         config = json.load(handle)
-    if config.get("schema_version") != "1.0.0":
+    if config.get("schema_version") != "2.0.0":
         raise ValueError("unsupported HSPC analysis schema")
     assets = config.get("required_assets")
     if not isinstance(assets, list) or len(assets) != 7:
@@ -55,6 +55,8 @@ def load_analysis_config(path: Path) -> dict[str, Any]:
 def load_source_ledger(path: Path) -> dict[str, Any]:
     with path.open(encoding="utf-8") as handle:
         ledger = json.load(handle)
+    if ledger.get("schema_version") != "2.0.0":
+        raise ValueError("unsupported HSPC source-ledger schema")
     if ledger.get("module") != "hspc-fate":
         raise ValueError("source ledger belongs to another module")
     sources = ledger.get("sources")
@@ -114,7 +116,7 @@ def fetch_assets(config: dict[str, Any], root: Path) -> list[Path]:
                 continue
         destination.parent.mkdir(parents=True, exist_ok=True)
         partial = destination.with_suffix(destination.suffix + ".part")
-        request = urllib.request.Request(asset["url"], headers={"User-Agent": "hspc-fate-mvp/0.1"})
+        request = urllib.request.Request(asset["url"], headers={"User-Agent": "hspc-fate-mvp/0.2"})
         with urllib.request.urlopen(request) as response, partial.open("wb") as output:
             while chunk := response.read(8 * 1024 * 1024):
                 output.write(chunk)

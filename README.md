@@ -5,7 +5,7 @@ Open-data research modules for cardiovascular sickle cell anemia (SCA). Each mod
 ## Research modules
 
 - **Endothelial transitions — implemented.** The released MVP prioritizes healthy heart-and-lung endothelial state adjacencies using indirect SCA-relevant evidence. See the [result](results/mvp/report.md), [implementation notes](docs/mvp-implementation.md), [scientific specification](docs/disease-conditioned-cellular-fate-model.md), and [EARS requirements](docs/current-phase-ears-requirements.md).
-- **HSPC fate — implemented.** The independent study asks whether open human HSPC data support a reproducible SCA-associated difference in inferred lineage allocation. Its v1 result is `insufficient_evidence`: no discovery lineage passed all stability controls, and one validation donor fell below the frozen root-cell reliability floor. See the [full study report](research/hspc-fate/study-report.md), [compact result](results/hspc-fate/report.md), [module contract](research/hspc-fate/README.md), [operation sequence](research/hspc-fate/operations.md), and [v1 EARS specification](research/hspc-fate/v1-spec.md).
+- **HSPC lineage priming — implemented v2.** The independent study tests donor-level SCD associations against a donor-balanced healthy reference using Palantir, CellRank-CytoTRACE, OOD rejection, held-out markers, and full model refits. Its valid result remains `insufficient_evidence`. See the [full study report](research/hspc-fate/study-report.md), [MVP-to-v2 migration](research/hspc-fate/migration-v2.md), [compact result](results/hspc-fate/report.md), and [module contract](research/hspc-fate/README.md).
 
 The [research index](research/README.md) defines the module boundary. The existing endothelial implementation remains the default executable project.
 
@@ -42,7 +42,7 @@ make test
 
 `make fetch` retrieves the endothelial assets; `make hspc-fetch` retrieves seven donor-separated or donor-resolved HSPC archives. Both workflows verify frozen byte counts and SHA-256 checksums. Raw and donor-level derived data remain outside Git. Compact, auditable releases live in `results/mvp/` and `results/hspc-fate/`.
 
-Use `make test-fast` for tests that do not require the public assets. The full suite reruns both real pipelines, requires repeated artifact hashes to match, checks source-format and QC behavior, preserves donor-level inference, and deliberately corrupts release artifacts to test detection.
+Use `make test-fast` for tests that do not require the public assets. The full suite reruns the real pipelines, checks source formats, QC and donor balancing, OOD mapping, donor-level inference, model robustness records, and deliberate release corruption.
 
 ## Project history
 

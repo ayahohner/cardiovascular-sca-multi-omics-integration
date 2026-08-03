@@ -49,7 +49,7 @@ def test_run_forwards_forced_preprocessing_and_reports_manifest(
 
     def fake_run(root, force_preprocess=False):
         calls.append((root, force_preprocess))
-        return {"release_id": "hspc-fate-v1", "classification": "insufficient_evidence"}
+        return {"release_id": "hspc-fate-v2", "classification": "insufficient_evidence"}
 
     monkeypatch.setattr(cli, "run_pipeline", fake_run)
     cli.main()

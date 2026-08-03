@@ -1,0 +1,127 @@
+cohort	perturbation	specification	lineage	estimator	effect	direction	detail	status
+discovery	baseline	baseline	myeloid	palantir	-0.036907254848443746	-1		completed
+discovery	baseline	baseline	myeloid	cellrank_cytotrace	-0.0001043140935707218	-1		completed
+discovery	baseline	baseline	erythroid_megakaryocytic	palantir	0.03267118350406362	1		completed
+discovery	baseline	baseline	erythroid_megakaryocytic	cellrank_cytotrace	0.0013457022886199654	1		completed
+discovery	baseline	baseline	lymphoid	palantir	0.004236071344381587	1		completed
+discovery	baseline	baseline	lymphoid	cellrank_cytotrace	-0.0012413881950477657	-1		completed
+discovery	donor_deletion_refit	exclude_HD175	myeloid	palantir	0.0263005101380685	1		completed
+discovery	donor_deletion_refit	exclude_HD175	myeloid	cellrank_cytotrace	-0.00715142397647698	-1		completed
+discovery	donor_deletion_refit	exclude_HD175	erythroid_megakaryocytic	palantir	-0.014496298801457197	-1		completed
+discovery	donor_deletion_refit	exclude_HD175	erythroid_megakaryocytic	cellrank_cytotrace	0.01355689836553764	1		completed
+discovery	donor_deletion_refit	exclude_HD175	lymphoid	palantir	-0.011804211336611525	-1		completed
+discovery	donor_deletion_refit	exclude_HD175	lymphoid	cellrank_cytotrace	-0.006405474389058915	-1		completed
+discovery	donor_deletion_refit	exclude_HD177	myeloid	palantir	-0.07232887372973561	-1		completed
+discovery	donor_deletion_refit	exclude_HD177	myeloid	cellrank_cytotrace	-0.0021072320892592394	-1		completed
+discovery	donor_deletion_refit	exclude_HD177	erythroid_megakaryocytic	palantir	0.07837893848377919	1		completed
+discovery	donor_deletion_refit	exclude_HD177	erythroid_megakaryocytic	cellrank_cytotrace	0.0002755421182920603	1		completed
+discovery	donor_deletion_refit	exclude_HD177	lymphoid	palantir	-0.006050064754043308	-1		completed
+discovery	donor_deletion_refit	exclude_HD177	lymphoid	cellrank_cytotrace	0.0018316899709631927	1		completed
+discovery	donor_deletion_refit	exclude_HD192	myeloid	palantir	-0.07394831458040313	-1		completed
+discovery	donor_deletion_refit	exclude_HD192	myeloid	cellrank_cytotrace	-5.1668360687040504e-05	-1		completed
+discovery	donor_deletion_refit	exclude_HD192	erythroid_megakaryocytic	palantir	0.01629778617572686	1		completed
+discovery	donor_deletion_refit	exclude_HD192	erythroid_megakaryocytic	cellrank_cytotrace	0.00019493941738113474	1		completed
+discovery	donor_deletion_refit	exclude_HD192	lymphoid	palantir	0.05765052840467505	1		completed
+discovery	donor_deletion_refit	exclude_HD192	lymphoid	cellrank_cytotrace	-0.0001432710566944724	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD2	myeloid	palantir	-0.06164005066949517	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD2	myeloid	cellrank_cytotrace	-0.00054692680055346	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD2	erythroid_megakaryocytic	palantir	0.055114343775683694	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD2	erythroid_megakaryocytic	cellrank_cytotrace	0.0031574984989967136	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD2	lymphoid	palantir	0.006525706893811781	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD2	lymphoid	cellrank_cytotrace	-0.002610571698441304	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD3	myeloid	palantir	-0.033307136675306825	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD3	myeloid	cellrank_cytotrace	0.001206535730868763	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD3	erythroid_megakaryocytic	palantir	0.025902980951399424	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD3	erythroid_megakaryocytic	cellrank_cytotrace	-0.0015614496822974333	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD3	lymphoid	palantir	0.007404155723909664	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD3	lymphoid	cellrank_cytotrace	0.0003549139514302073	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD4	myeloid	palantir	-0.01577457720052923	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD4	myeloid	cellrank_cytotrace	-0.0009725512110274753	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD4	erythroid_megakaryocytic	palantir	0.0169962257851074	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD4	erythroid_megakaryocytic	cellrank_cytotrace	0.002441058049160616	1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD4	lymphoid	palantir	-0.0012216485845766706	-1		completed
+discovery	donor_deletion_fixed_reference	exclude_SCD4	lymphoid	cellrank_cytotrace	-0.0014685068381322074	-1		completed
+discovery	hyperparameter_refit	lower_resolution	myeloid	palantir	0.0824457278044633	1		completed
+discovery	hyperparameter_refit	lower_resolution	myeloid	cellrank_cytotrace	-0.007181483509061504	-1		completed
+discovery	hyperparameter_refit	lower_resolution	erythroid_megakaryocytic	palantir	-0.08616566632163986	-1		completed
+discovery	hyperparameter_refit	lower_resolution	erythroid_megakaryocytic	cellrank_cytotrace	0.00866671432675481	1		completed
+discovery	hyperparameter_refit	lower_resolution	lymphoid	palantir	0.0037199385171771127	1		completed
+discovery	hyperparameter_refit	lower_resolution	lymphoid	cellrank_cytotrace	-0.001485230817693424	-1		completed
+discovery	hyperparameter_refit	higher_resolution	myeloid	palantir	-0.005381929477403208	-1		completed
+discovery	hyperparameter_refit	higher_resolution	myeloid	cellrank_cytotrace	-0.0003670748227308125	-1		completed
+discovery	hyperparameter_refit	higher_resolution	erythroid_megakaryocytic	palantir	0.026327969403025286	1		completed
+discovery	hyperparameter_refit	higher_resolution	erythroid_megakaryocytic	cellrank_cytotrace	0.0018752407797123505	1		completed
+discovery	hyperparameter_refit	higher_resolution	lymphoid	palantir	-0.020946039925622995	-1		completed
+discovery	hyperparameter_refit	higher_resolution	lymphoid	cellrank_cytotrace	-0.0015081659569822908	-1		completed
+validation	baseline	baseline	myeloid	palantir	-0.2276065845596419	-1		completed
+validation	baseline	baseline	myeloid	cellrank_cytotrace	-0.002507901588033823	-1		completed
+validation	baseline	baseline	erythroid_megakaryocytic	palantir	0.27075884768058556	1		completed
+validation	baseline	baseline	erythroid_megakaryocytic	cellrank_cytotrace	-0.003371508782629807	-1		completed
+validation	baseline	baseline	lymphoid	palantir	-0.04315226312094349	-1		completed
+validation	baseline	baseline	lymphoid	cellrank_cytotrace	0.0058794103706647505	1		completed
+validation	donor_deletion_refit	exclude_BM1	myeloid	palantir	0.010345090015015934	1		completed
+validation	donor_deletion_refit	exclude_BM1	myeloid	cellrank_cytotrace	-0.01199544506560346	-1		completed
+validation	donor_deletion_refit	exclude_BM1	erythroid_megakaryocytic	palantir	-0.0073714394373675385	-1		completed
+validation	donor_deletion_refit	exclude_BM1	erythroid_megakaryocytic	cellrank_cytotrace	-0.002603737745661019	-1		completed
+validation	donor_deletion_refit	exclude_BM1	lymphoid	palantir	-0.002973650577650529	-1		completed
+validation	donor_deletion_refit	exclude_BM1	lymphoid	cellrank_cytotrace	0.014599182811264655	1		completed
+validation	donor_deletion_refit	exclude_BM2	myeloid	palantir		0	RuntimeError: Palantir probabilities do not sum to one: minimum=0; maximum=1	failed
+validation	donor_deletion_refit	exclude_BM2	myeloid	cellrank_cytotrace		0	RuntimeError: Palantir probabilities do not sum to one: minimum=0; maximum=1	failed
+validation	donor_deletion_refit	exclude_BM2	erythroid_megakaryocytic	palantir		0	RuntimeError: Palantir probabilities do not sum to one: minimum=0; maximum=1	failed
+validation	donor_deletion_refit	exclude_BM2	erythroid_megakaryocytic	cellrank_cytotrace		0	RuntimeError: Palantir probabilities do not sum to one: minimum=0; maximum=1	failed
+validation	donor_deletion_refit	exclude_BM2	lymphoid	palantir		0	RuntimeError: Palantir probabilities do not sum to one: minimum=0; maximum=1	failed
+validation	donor_deletion_refit	exclude_BM2	lymphoid	cellrank_cytotrace		0	RuntimeError: Palantir probabilities do not sum to one: minimum=0; maximum=1	failed
+validation	donor_deletion_refit	exclude_BM3	myeloid	palantir	-0.19373135733266383	-1		completed
+validation	donor_deletion_refit	exclude_BM3	myeloid	cellrank_cytotrace	0.01058014411965369	1		completed
+validation	donor_deletion_refit	exclude_BM3	erythroid_megakaryocytic	palantir	0.26033853267706003	1		completed
+validation	donor_deletion_refit	exclude_BM3	erythroid_megakaryocytic	cellrank_cytotrace	-0.0026880435259853917	-1		completed
+validation	donor_deletion_refit	exclude_BM3	lymphoid	palantir	-0.06660717534439593	-1		completed
+validation	donor_deletion_refit	exclude_BM3	lymphoid	cellrank_cytotrace	-0.007892100593669016	-1		completed
+validation	donor_deletion_refit	exclude_BM4	myeloid	palantir		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	donor_deletion_refit	exclude_BM4	myeloid	cellrank_cytotrace		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	donor_deletion_refit	exclude_BM4	erythroid_megakaryocytic	palantir		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	donor_deletion_refit	exclude_BM4	erythroid_megakaryocytic	cellrank_cytotrace		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	donor_deletion_refit	exclude_BM4	lymphoid	palantir		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	donor_deletion_refit	exclude_BM4	lymphoid	cellrank_cytotrace		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	donor_deletion_fixed_reference	exclude_SCD1	myeloid	palantir	-0.28661256534131746	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD1	myeloid	cellrank_cytotrace	-0.004357143249247852	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD1	erythroid_megakaryocytic	palantir	0.32823869124006666	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD1	erythroid_megakaryocytic	cellrank_cytotrace	-0.003202938209807967	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD1	lymphoid	palantir	-0.04162612589874892	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD1	lymphoid	cellrank_cytotrace	0.0075600814590569	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD2	myeloid	palantir	-0.23288962514903777	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD2	myeloid	cellrank_cytotrace	-0.0041761430097444485	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD2	erythroid_megakaryocytic	palantir	0.2741064512969038	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD2	erythroid_megakaryocytic	cellrank_cytotrace	-0.0039004739827430664	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD2	lymphoid	palantir	-0.04121682614786574	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD2	lymphoid	cellrank_cytotrace	0.008076616992488628	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD3	myeloid	palantir	-0.20763818172336768	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD3	myeloid	cellrank_cytotrace	-0.004551783600075909	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD3	erythroid_megakaryocytic	palantir	0.2516794966213599	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD3	erythroid_megakaryocytic	cellrank_cytotrace	-0.0031449745535163387	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD3	lymphoid	palantir	-0.04404131489799219	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD3	lymphoid	cellrank_cytotrace	0.0076967581535933305	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD4	myeloid	palantir	-0.19596057076870876	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD4	myeloid	cellrank_cytotrace	-0.004638657631928167	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD4	erythroid_megakaryocytic	palantir	0.23911140793433938	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD4	erythroid_megakaryocytic	cellrank_cytotrace	-0.003500918553824759	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD4	lymphoid	palantir	-0.04315083716563048	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD4	lymphoid	cellrank_cytotrace	0.008139576185754172	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD5	myeloid	palantir	-0.21493197981577788	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD5	myeloid	cellrank_cytotrace	0.005184219550827263	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD5	erythroid_megakaryocytic	palantir	0.26065819131025814	1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD5	erythroid_megakaryocytic	cellrank_cytotrace	-0.0031082386132569046	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD5	lymphoid	palantir	-0.04572621149448011	-1		completed
+validation	donor_deletion_fixed_reference	exclude_SCD5	lymphoid	cellrank_cytotrace	-0.0020759809375692218	-1		completed
+validation	hyperparameter_refit	lower_resolution	myeloid	palantir		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	hyperparameter_refit	lower_resolution	myeloid	cellrank_cytotrace		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	hyperparameter_refit	lower_resolution	erythroid_megakaryocytic	palantir		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	hyperparameter_refit	lower_resolution	erythroid_megakaryocytic	cellrank_cytotrace		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	hyperparameter_refit	lower_resolution	lymphoid	palantir		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	hyperparameter_refit	lower_resolution	lymphoid	cellrank_cytotrace		0	RuntimeError: donor SCD5 has no reference-supported HSC/MPP-like cells	failed
+validation	hyperparameter_refit	higher_resolution	myeloid	palantir	0.036220392390917566	1		completed
+validation	hyperparameter_refit	higher_resolution	myeloid	cellrank_cytotrace	0.009124065222724353	1		completed
+validation	hyperparameter_refit	higher_resolution	erythroid_megakaryocytic	palantir	0.007394244662531413	1		completed
+validation	hyperparameter_refit	higher_resolution	erythroid_megakaryocytic	cellrank_cytotrace	1.087162950121328e-05	1		completed
+validation	hyperparameter_refit	higher_resolution	lymphoid	palantir	-0.0436146370534399	-1		completed
+validation	hyperparameter_refit	higher_resolution	lymphoid	cellrank_cytotrace	-0.009134936852225772	-1		completed

@@ -12,7 +12,11 @@ from scipy.io import mmwrite
 
 from hspc_fate_mvp import preprocess
 from hspc_fate_mvp.matrixio import DonorMatrix, read_discovery_zip, read_validation_sample
-from hspc_fate_mvp.preprocess import _scrublet_calls, qc_donor
+from hspc_fate_mvp.preprocess import (
+    _scrublet_calls,
+    collapse_duplicate_gene_symbols,
+    qc_donor,
+)
 from hspc_fate_mvp.sources import load_analysis_config
 
 
@@ -109,7 +113,26 @@ def test_qc_ledger_accounts_for_each_exclusion_and_doublets() -> None:
         "scrublet_doublet": 1,
     }
     assert sum(exclusions.values()) == donor.counts.shape[0] - retained.counts.shape[0]
-    assert diagnostics["retained_cells"] == 1
+    assert diagnostics["final_retained_cells"] == 1
+
+
+def test_duplicate_gene_symbols_are_collapsed_before_scoring() -> None:
+    donor = DonorMatrix(
+        donor="D",
+        condition="healthy",
+        cohort="discovery",
+        genes=np.asarray(["CD34", "MPO", "mpo"]),
+        barcodes=np.asarray(["cell"]),
+        counts=sparse.csr_matrix([[1, 2, 3]]),
+        gene_ids=np.asarray(["ENSG1", "ENSG2", "ENSG3"]),
+    )
+
+    collapsed, duplicate_count = collapse_duplicate_gene_symbols(donor)
+
+    assert duplicate_count == 1
+    assert collapsed.genes.tolist() == ["CD34", "MPO"]
+    assert collapsed.gene_ids.tolist() == ["ENSG1", "ENSG2"]
+    np.testing.assert_array_equal(collapsed.counts.toarray(), [[1, 5]])
 
 
 def test_degenerate_scrublet_uses_auditable_complexity_fallback(monkeypatch) -> None:
